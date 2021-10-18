@@ -1,0 +1,48 @@
+.mt-1.col-md-5.mx-auto style="z-index: 100;position: absolute;width: 100%;top: 0;right: 0;left: 0;"
+  - if flash[:primary].present?
+    .alert.alert-primary.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:primary].html_safe
+
+  - if flash[:secondary].present?
+    .alert.alert-secondary.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:secondary].html_safe
+
+  - if flash[:success].present?
+    .alert.alert-success.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:success].html_safe
+
+  - if flash[:alert].present?
+    .alert.alert-danger.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:alert].html_safe
+
+  - if flash[:warning].present?
+    .alert.alert-warning.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:warning].html_safe
+
+  - if flash[:notice].present?
+    .alert.alert-info.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:notice].html_safe
+
+  - if flash[:light].present?
+    .alert.alert-light.alert-dismissible.fade.show role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:light].html_safe
+
+  - if flash[:dark].present?
+    .alert.alert-dark.alert-dismissible.fade.show.mb-0 role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  &times;
+      = flash[:dark].html_safe

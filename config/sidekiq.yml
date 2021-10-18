@@ -1,0 +1,14 @@
+development:
+  :concurrency: 5
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 10
+
+:queues:
+  - default
+
+# :schedule:
+#   notification_job_scheduler:
+#     cron: '0 12 * * *'   # Runs every day at 12:00 (cron notation)
+#     class: NotificationJob    
