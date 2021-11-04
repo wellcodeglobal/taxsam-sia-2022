@@ -19,12 +19,14 @@ gem 'sidekiq-scheduler'
 # gem 'mongoid', '~> 7.0.5'
 
 gem 'clearance'
+gem 'twilio-ruby'
 gem 'money-rails'
 gem 'slim-rails'
 
 gem "image_processing", ">= 1.2"
 gem 'asset_sync'
 gem 'fog-aws'
+gem 'aws-sdk-s3', require: false
 
 gem 'newrelic_rpm'
 gem 'google-analytics-rails', '1.1.1'
@@ -39,6 +41,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem 'annotate'
   gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'

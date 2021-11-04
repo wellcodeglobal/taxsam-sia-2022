@@ -1,0 +1,20 @@
+default: &default
+  account_sid: "<%= ENV['TWILIO_ACCOUNT_SID'] %>"
+  auth_token: "<%= ENV['TWILIO_AUTH_TOKEN'] %>"
+  phone_number: "<%= ENV['TWILIO_PHONE_NUMBER'] %>"
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+test:
+  account_sid: 'sample'
+  auth_token: 'sample'
+  phone_number: 'sample'
+
+production:
+  account_sid: "<%= ENV['TWILIO_ACCOUNT_SID'] %>"
+  auth_token: "<%= ENV['TWILIO_AUTH_TOKEN'] %>"
+  phone_number: "<%= ENV['TWILIO_PHONE_NUMBER'] %>"
