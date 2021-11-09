@@ -32,7 +32,9 @@ gem 'newrelic_rpm'
 gem 'google-analytics-rails', '1.1.1'
 
 group :development, :test do
-  gem 'dotenv-rails'
+  gem 'dotenv-rails'  
+  gem "pry"
+  gem "break"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
