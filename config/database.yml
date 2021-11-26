@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: aderai_club-dev
+  database: template_project_db-dev
   pool: 5
   username: postgres
   password: postgres
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: aderai_club-test
+  database: template_project_db-test
   pool: 5
   username: postgres
   password: postgres
