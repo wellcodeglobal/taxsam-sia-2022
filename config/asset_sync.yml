@@ -48,7 +48,7 @@ test:
 
 staging:
   <<: *defaults
-  fog_directory: "template_project_assets"
+  fog_directory: "aderai_club_assets"
 
 production:
   <<: *defaults
