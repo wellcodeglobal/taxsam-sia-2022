@@ -94,11 +94,14 @@ You need to install :
 
 ### Deploy Server
   Follow this article for setup server deployment with capistrano :
+  <a href="https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano">
+  How to Deploy a Rails 6 Application with Capistrano, Nginx, Puma, Postgresql, LetsEncrypt on Ubuntu 20.04`
+  </a>
   ```
   https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
   ```
   <p align="right">(<a href="#top">back to top</a>)</p>
-  
+
 ### Setup Local Project for Deploy Server
   and the you can follow this step for local project :
 
@@ -123,13 +126,11 @@ You need to install :
   scp config/master.key rails@mysite.com:apps/mysite/shared/config
   ```
   5. Adjust your production database `config/database.yml` file.
-  ```
+  ```  
   production:
-    <<: *default
-    database: mysite_production
-    host: localhost
-    username: rails
-    password: mypassword
+    adapter: postgresql
+    encoding: unicode
+    url: <%= ENV['DATABASE_URL'] %>
   ```
   6. try to deploy to production with actual server.
   ```
