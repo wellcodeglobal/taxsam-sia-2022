@@ -29,8 +29,7 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  
 set :precompile_env             
 set :assets_dir                 
-set :rsync_cmd    
-set :bundle_flags, '--deployment --quiet'              
+set :rsync_cmd
 
 append :linked_files, "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
