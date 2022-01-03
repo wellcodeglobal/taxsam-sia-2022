@@ -9,9 +9,9 @@ set :rbenv_ruby, '3.0.0'
 set :rbenv_path, '/home/ubuntu/.rbenv/'
 
 set :user, 'ubuntu'
-set :puma_threads,    [1, 3]
+set :puma_threads,    1
 set :puma_workers,    1
-set :bundle_jobs, 1
+set :bundle_jobs,     1
 
 set :pty,             true
 set :use_sudo,        false
@@ -29,7 +29,8 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  
 set :precompile_env             
 set :assets_dir                 
-set :rsync_cmd                  
+set :rsync_cmd    
+set :bundle_flags, '--deployment --quiet'              
 
 append :linked_files, "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
