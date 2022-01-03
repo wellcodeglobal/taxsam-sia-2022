@@ -22,11 +22,12 @@ class BaseService
     end
 
     return false if error_messages.present?
-    return true
-  rescue => e
+
+    true
+  rescue StandardError => e
     Rails.logger.error "[SERVICE][ERROR] #{e}"
     error_messages << e.message
-    return false
+    false
   end
 
   def validate_before_action; end

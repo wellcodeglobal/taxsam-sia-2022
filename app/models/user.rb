@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -11,6 +13,6 @@
 #  remember_token     :string(128)      not null
 #
 class User < ApplicationRecord
-  include Clearance::User 
+  include Clearance::User
   has_one_attached :avatar
 end
