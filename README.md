@@ -22,7 +22,9 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#Environment">Environment</a></li>
+    <li><a href="#environment">Environment</a></li>
+    <li><a href="#deploy-server">Deploy Server</a></li>
+    <li><a href="#setup-local-project-for-deploy-server">Setup Local Project for Deploy Server</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -85,10 +87,55 @@ You need to install :
   TWILIO_PHONE_NUMBER=""
 
   NEW_RELIC_NAME_APP=""
-  NEW_RELIC_LICENSE="d626813596683fbfde6ff0c817aad2832f8053e5"
+  NEW_RELIC_LICENSE="d626813596683fbfde6ff0c817aad2832f8053e5" <<-CHANGE THIS WITH New Relic project>>
 
-  GOOGLE_ANALYTICS_KEY="UA-206526044-1"
+  GOOGLE_ANALYTICS_KEY="UA-206526044-1" <<-CHANGE THIS WITH GA project>>
   ```
+
+### Deploy Server
+  Follow this article for setup server deployment with capistrano :
+  ```
+  https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
+  ```
+  <p align="right">(<a href="#top">back to top</a>)</p>
+  
+### Setup Local Project for Deploy Server
+  and the you can follow this step for local project :
+
+  1. run bundle install
+  2. run cap install
+  3. replace code template project for deployment with your project in `config/deploy.rb`
+  ```  
+  server 'TEMPLATE_PROJECT.com', port: 22, roles: [:web, :app, :db], primary: true
+  set :application, "TEMPLATE_PROJECT"
+  set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
+  ```
+  4. setup pub ssh with your project ssh key public server, and change the path in `config/deploy.rb`
+  ```
+  set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template_project.pub) }
+  ```
+  4. Copy your master.key to the shared dir.
+  ```
+  ssh rails@mysite.com
+  mkdir -p apps/mysite/shared/config
+  # back on your machine
+  cd mysite
+  scp config/master.key rails@mysite.com:apps/mysite/shared/config
+  ```
+  5. Adjust your production database `config/database.yml` file.
+  ```
+  production:
+    <<: *default
+    database: mysite_production
+    host: localhost
+    username: rails
+    password: mypassword
+  ```
+  6. try to deploy to production with actual server.
+  ```
+  cap production deploy
+  ```
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
