@@ -43,5 +43,6 @@ require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rbenv'
 require 'capistrano/puma'
+require 'capistrano/local_precompile'
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Systemd

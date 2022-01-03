@@ -1,7 +1,7 @@
 lock "~> 3.16.0"
 
 # replace obvious parts
-server 'ec2-54-179-54-91.ap-southeast-1.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
+server 'ec2-13-250-30-253.ap-southeast-1.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
 set :application, "template-project"
 set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
 set :branch, "main"
@@ -9,8 +9,9 @@ set :rbenv_ruby, '3.0.0'
 set :rbenv_path, '/home/ubuntu/.rbenv/'
 
 set :user, 'ubuntu'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+set :puma_threads,    [1, 3]
+set :puma_workers,    1
+set :bundle_jobs, 1
 
 set :pty,             true
 set :use_sudo,        false
@@ -25,8 +26,10 @@ set :puma_error_log,  "#{release_path}/log/puma.error.log"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template-project.cer) }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
-set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-
+set :puma_init_active_record, true  
+set :precompile_env             
+set :assets_dir                 
+set :rsync_cmd                  
 
 append :linked_files, "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
