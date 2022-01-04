@@ -16,6 +16,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
+      <a href="#checklist-improvement">Checklist Improvement</a>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
@@ -30,6 +31,21 @@
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
+
+## Checklist Improvement
+
+- [x] Template Rails 6 
+- [ ] Template Rails 7
+- [x] Monitoring Website (Google Analytics)
+- [x] Monitoring Website (New Relic)
+- [x] Monitoring Website (Datadog)
+- [x] App Notification (Airbrake)
+- [ ] Server Notification (AWS Cloudwatch Alarm)
+- [x] Auto Deploy (Capistrano)
+- [ ] Code Standardization rails (?)
+- [ ] Code Standardization JS (?)
+- [ ] Code Standardization Template/Framework (?)
+- [ ] ...
 
 <!-- GETTING STARTED -->
 ## Getting Started
