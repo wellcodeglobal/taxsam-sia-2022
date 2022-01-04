@@ -203,6 +203,11 @@ You need to install :
   sudo ln -s /etc/nginx/sites-available/template-project.wellcode.io /etc/nginx/sites-enabled/template-project.wellcode.io
   ```
   
+  4. setup new ssl certificate for domain name
+  Ensure cerbot already installed in server
+  ```
+  sudo certbot --nginx -d alert-template-project.wellcode.io <-- change to domain name
+  ```
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Setup Local Project for Deploy Server
