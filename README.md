@@ -114,6 +114,7 @@ You need to install :
   mkdir -p /home/ubuntu/template-project/shared/tmp/sockets
 
   touch /home/ubuntu/.env
+  touch /home/ubuntu/.env_export
   ```
 
   3. Setup Postgre sql and database  
@@ -154,6 +155,7 @@ You need to install :
   ExecReload=/bin/kill -TSTP $MAINPID
   StandardOutput=append:/home/ubuntu/template-project/current/log/puma.access.log
   StandardError=append:/home/ubuntu/template-project/current/log/puma.error.log
+  EnvironmentFile=/home/ubuntu/.env
   Restart=always
   SyslogIdentifier=puma
 

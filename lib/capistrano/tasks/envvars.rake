@@ -6,7 +6,7 @@ namespace :envvars do
 
       on roles(:app) do
           # Read in the environment file 
-          lines = capture("cat /home/ubuntu/.env")
+          lines = capture("cat /home/ubuntu/.env_export")
           lines.each_line do |line|
               # Remove the "export " keyword, we have no use for that here 
               line = line.sub /^export /, ""
@@ -18,7 +18,8 @@ namespace :envvars do
 
               # Remove surrounding quotes if present
               value = value.slice(1..-2) if value.start_with?('"') and value.end_with?('"')
-
+              
+              puts "loaded env -> #{key}=#{value}"
               # Store the value in our :default_env copy
               environment.store(key, value)
           end
