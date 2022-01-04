@@ -32,6 +32,7 @@ gem 'image_processing', '>= 1.2'
 
 gem 'google-analytics-rails', '1.1.1'
 gem 'newrelic_rpm'
+gem 'airbrake'
 
 group :development, :test do
   gem 'break'
