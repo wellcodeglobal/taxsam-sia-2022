@@ -34,6 +34,8 @@ gem 'google-analytics-rails', '1.1.1'
 gem 'newrelic_rpm'
 gem 'airbrake'
 gem 'ddtrace', require: 'ddtrace/auto_instrument'
+gem 'lograge'
+gem 'lograge-sql'
 
 group :development, :test do
   gem 'break'
