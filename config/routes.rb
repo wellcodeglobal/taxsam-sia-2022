@@ -4,6 +4,7 @@ require 'sidekiq-scheduler/web'
 Rails.application.routes.draw do
   #Authrization Login/Register
   get 'home', to: "homes#index"
+  get 'err_page', to: "homes#err_page"
 
   constraints Clearance::Constraints::SignedIn.new do
     mount Sidekiq::Web, at: '/sidekiq'    
