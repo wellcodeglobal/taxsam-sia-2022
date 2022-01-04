@@ -108,10 +108,12 @@ You need to install :
   1. Access SSH
     access ssh to server production and prepare all requirement for server
 
-  2. Folder requirement in server production
+  2. Folder & File requirement in server production
   ```
   mkdir -p /home/ubuntu/template-project
   mkdir -p /home/ubuntu/template-project/shared/tmp/sockets
+
+  touch /home/ubuntu/.env
   ```
 
   3. Setup Postgre sql and database  
