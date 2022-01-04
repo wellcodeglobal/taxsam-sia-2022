@@ -43,5 +43,6 @@ require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rbenv'
 require 'capistrano/puma'
+require 'capistrano/rails/logs'
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Systemd
