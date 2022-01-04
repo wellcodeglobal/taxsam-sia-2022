@@ -5,11 +5,11 @@ class HomesController < ApplicationController
   def index; end
 
   def err_page
-    call_err_methodss
+    sample_err_methods
   end
 
   private
-  def call_err_methodss
-    raise "This is new an error"
+  def sample_err_methods
+    raise "This is sample_err_methods"
   end
 end
