@@ -5,8 +5,13 @@ server 'ec2-54-151-254-250.ap-southeast-1.compute.amazonaws.com', port: 22, role
 set :application, "template-project"
 set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
 set :branch, "main"
+
 set :rbenv_ruby, '3.0.0'
-set :rbenv_path, '/home/ubuntu/.rbenv/'
+set :rbenv_path, '/home/ubuntu/.rbenv'
+set :rbenv_type, :system
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all
 
 set :user, 'ubuntu'
 set :puma_threads,    1
@@ -17,7 +22,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/projects/#{fetch(:application)}"
+set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
