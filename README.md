@@ -278,7 +278,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the WELLCODE.IO License.
+Distributed under the <a href="https://wellcode.io"> WELLCODE.IO </a> License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
