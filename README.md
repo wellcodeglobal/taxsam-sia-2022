@@ -215,8 +215,8 @@ You need to install :
   DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=API_KEY DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
   ```
   - show status datadog `sudo datadog-agent status`
-  - Follow this article for more detail to setup server deployment with capistrano :
-  <a href="https://www.datadoghq.com/blog/monitoring-rails-with-datadog/">
+  - Follow this article for more detail to setup Monitoring Rails applications with Datadog :
+  <a href="https://www.datadoghq.com/blog/monitoring-rails-with-datadog/">Monitoring Rails applications with Datadog</a>
   
   <p align="right">(<a href="#top">back to top</a>)</p>
 
