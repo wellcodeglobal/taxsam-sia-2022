@@ -1,7 +1,7 @@
 lock "~> 3.16.0"
 
 # replace obvious parts
-server 'ec2-13-250-30-253.ap-southeast-1.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
+server 'ec2-54-151-254-250.ap-southeast-1.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
 set :application, "template-project"
 set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
 set :branch, "main"
@@ -27,9 +27,6 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  
-set :precompile_env             
-set :assets_dir                 
-set :rsync_cmd
 
 append :linked_files, "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
