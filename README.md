@@ -99,9 +99,84 @@ You need to install :
   </a>
   ```
   https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
-  ```
-  <p align="right">(<a href="#top">back to top</a>)</p>
+  ```  
 
+  pre install server :
+  - ruby
+  - postgresql
+  - nginx
+  - git
+  - nodejs
+  - npm
+
+
+  to turn on assets sync please see the document in lib/tasks/asset_sync.rake
+
+  setup the database postgresql and provide the url :
+  postgresql://postgres@localhost:5432/template_project
+
+  setup puma service and nginx :
+  check if there is messages like `Failed to restart puma_mysite_production.service: Unit puma_mysite_production.service not found.`
+
+  ```
+  vi /etc/systemd/system/puma_template-project_production.service
+  ```
+
+  ```
+  [Unit]
+  Description=Puma HTTP Server for template_project (production)
+  After=network.target
+
+  [Service]
+  Type=simple
+  User=ubuntu
+  WorkingDirectory=/home/ubuntu/template-project/current
+  ExecStart=/home/ubuntu/.rbenv/bin/rbenv do bundle exec puma -C /home/ubuntu/template-project/shared/puma.rb
+  ExecReload=/bin/kill -TSTP $MAINPID
+  StandardOutput=append:/home/ubuntu/template-project/current/log/puma.access.log
+  StandardError=append:/home/ubuntu/template-project/current/log/puma.error.log
+  Restart=always
+  SyslogIdentifier=puma
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+
+  ```
+  mkdir /home/ubuntu/template-project/shared/tmp/sockets
+  ```
+
+### Setup Nginx
+  ```
+  vi /etc/nginx/sites-enabled/template-project
+  ```
+
+  ```
+  upstream template-project.wellcode.io {
+    server unix:///home/ubuntu/template-project/shared/tmp/sockets/template-project-puma.sock;
+  }
+
+  server {
+    server_name template-project.wellcode.io;
+    client_max_body_size 50M;
+
+    root /home/ubuntu/template-project/current/public;
+    access_log /home/ubuntu/template-project/current/log/nginx.access.log;
+    error_log /home/ubuntu/template-project/current/log/nginx.error.log info;
+
+    location / {
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Ssl on;
+
+      proxy_buffer_size          128k;
+      proxy_buffers              4 256k;
+      proxy_busy_buffers_size    256k;
+    }
+  }
+  ```
+
+  
 ### Setup Local Project for Deploy Server
   and the you can follow this step for local project :
 
@@ -113,10 +188,12 @@ You need to install :
   set :application, "TEMPLATE_PROJECT"
   set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
   ```
+  
   4. setup pub ssh with your project ssh key public server, and change the path in `config/deploy.rb`
   ```
   set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template_project.pub) }
   ```
+
   4. Copy your master.key to the shared dir.
   ```
   ssh rails@mysite.com
@@ -125,6 +202,7 @@ You need to install :
   cd mysite
   scp config/master.key rails@mysite.com:apps/mysite/shared/config
   ```
+
   5. Adjust your production database `config/database.yml` file.
   ```  
   production:
@@ -132,10 +210,17 @@ You need to install :
     encoding: unicode
     url: <%= ENV['DATABASE_URL'] %>
   ```
+
   6. try to deploy to production with actual server.
   ```
   cap production deploy
   ```
+
+  access log for capistrano run :
+  ```
+  cap production rails:logs
+  ```
+
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
