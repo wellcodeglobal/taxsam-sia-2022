@@ -148,6 +148,10 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
+    ddtrace (0.54.1)
+      debase-ruby_core_source (= 0.10.12)
+      msgpack
+    debase-ruby_core_source (0.10.12)
     debug_inspector (1.1.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -442,6 +446,7 @@ DEPENDENCIES
   capistrano3-puma
   capybara (>= 3.26)
   clearance
+  ddtrace
   dotenv-rails
   fog-aws
   google-analytics-rails (= 1.1.1)
