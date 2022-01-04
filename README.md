@@ -42,10 +42,13 @@ Download dan clone this project to your local and change :
 ### Prerequisites
 
 You need to install :
-- ruby 3.0.2
-- Rails 6.1.4.1
-- Yarn 1.22.11
-- Node v12.22.6
+- ruby
+- Yarn 
+- postgresql
+- git
+- nginx
+- nodejs
+- npm
 
 ### Installation
 
@@ -101,27 +104,38 @@ You need to install :
   https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
   ```  
 
-  pre install server :
-  - ruby
-  - postgresql
-  - nginx
-  - git
-  - nodejs
-  - npm
+  1. Access SSH
+    access ssh to server production and prepare all requirement for server
 
+  2. Folder requirement
+    create folder to install in server production
+    ```
+    mkdir -p /home/ubuntu/template-project
+    mkdir -p /home/ubuntu/template-project/shared/tmp/sockets
+    ```
 
-  to turn on assets sync please see the document in lib/tasks/asset_sync.rake
-
+  3. Setup Postgre sql and database
   setup the database postgresql and provide the url :
-  postgresql://postgres@localhost:5432/template_project
+  ```
+  1. sudo -u postgres psql
+  2. create database template_project;
+  3. \password postgres
+  ```
 
-  setup puma service and nginx :
+  and result url for user postgres and password postgres in localhost env to be like this :
+  ```
+  postgresql://postgres@localhost:5432/template_project
+  ```
+  
+  4. setup puma service and nginx :
   check if there is messages like `Failed to restart puma_mysite_production.service: Unit puma_mysite_production.service not found.`
 
+  create service for puma 
   ```
   vi /etc/systemd/system/puma_template-project_production.service
   ```
-
+  
+  and code script for service puma 
   ```
   [Unit]
   Description=Puma HTTP Server for template_project (production)
@@ -142,15 +156,13 @@ You need to install :
   WantedBy=multi-user.target
   ```
 
-  ```
-  mkdir /home/ubuntu/template-project/shared/tmp/sockets
-  ```
-
 ### Setup Nginx
+  1. make file for site nginx
   ```
-  vi /etc/nginx/sites-enabled/template-project
+  vi /etc/nginx/sites-available/template-project.wellcode.io  
   ```
 
+  2. setup nginx with this code :
   ```
   upstream template-project.wellcode.io {
     server unix:///home/ubuntu/template-project/shared/tmp/sockets/template-project-puma.sock;
@@ -176,6 +188,10 @@ You need to install :
   }
   ```
 
+  3. and link file to site-enabled
+  ```
+  sudo ln -s /etc/nginx/sites-available/template-project.wellcode.io /etc/nginx/sites-enabled/template-project.wellcode.io
+  ```
   
 ### Setup Local Project for Deploy Server
   and the you can follow this step for local project :
@@ -188,7 +204,7 @@ You need to install :
   set :application, "TEMPLATE_PROJECT"
   set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
   ```
-  
+
   4. setup pub ssh with your project ssh key public server, and change the path in `config/deploy.rb`
   ```
   set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template_project.pub) }
@@ -203,13 +219,14 @@ You need to install :
   scp config/master.key rails@mysite.com:apps/mysite/shared/config
   ```
 
-  5. Adjust your production database `config/database.yml` file.
-  ```  
-  production:
-    adapter: postgresql
-    encoding: unicode
-    url: <%= ENV['DATABASE_URL'] %>
+  5. Adjust your production database `config/database.yml` file and set env for deployment in `config/deploy.rb`.
   ```
+  set :default_env, {
+    PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
+    NODE_ENVIRONMENT: 'production',
+    DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/template_project"
+  }
+  ```  
 
   6. try to deploy to production with actual server.
   ```
@@ -221,6 +238,8 @@ You need to install :
   cap production rails:logs
   ```
 
+  7. Assets Sync
+  to turn on assets sync please see the document in `lib/tasks/asset_sync.rake`
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
