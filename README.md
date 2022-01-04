@@ -204,10 +204,20 @@ You need to install :
   ```
   
   4. setup new ssl certificate for domain name
+  
   Ensure cerbot already installed in server
   ```
   sudo certbot --nginx -d alert-template-project.wellcode.io <-- change to domain name
   ```
+  
+  5. Setup datadog for new server
+  ```
+  DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=API_KEY DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+  ```
+  - show status datadog `sudo datadog-agent status`
+  - Follow this article for more detail to setup server deployment with capistrano :
+  <a href="https://www.datadoghq.com/blog/monitoring-rails-with-datadog/">
+  
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Setup Local Project for Deploy Server
