@@ -12,6 +12,11 @@ set :rbenv_type, :system
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
+set :default_env, {
+  PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
+  NODE_ENVIRONMENT: 'production'
+}
+
 
 set :user, 'ubuntu'
 set :puma_threads,    [4, 16]
@@ -85,5 +90,5 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
 # set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-set :ssh_options, verify_host_key: :secure
-before "deploy:assets:precompile", "deploy:yarn_install"
+# set :ssh_options, verify_host_key: :secure
+#before "deploy:assets:precompile", "deploy:yarn_install"
