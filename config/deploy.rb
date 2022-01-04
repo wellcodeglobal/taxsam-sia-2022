@@ -14,9 +14,9 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
 
 set :user, 'ubuntu'
-set :puma_threads,    1
-set :puma_workers,    1
-set :bundle_jobs,     1
+set :puma_threads,    [4, 16]
+set :puma_workers,    0
+set :bundle_jobs,     4
 
 set :pty,             true
 set :use_sudo,        false
