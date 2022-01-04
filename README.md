@@ -39,6 +39,8 @@ Download dan clone this project to your local and change :
 - `asset_sync.yml`
 - Replace all `TEMPLATE_PROJECT` from `app/views/*` to your project name.
 
+  <p align="right">(<a href="#top">back to top</a>)</p>
+  
 ### Prerequisites
 
 You need to install :
@@ -49,6 +51,8 @@ You need to install :
 - nginx
 - nodejs
 - npm
+
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
 
@@ -95,47 +99,43 @@ You need to install :
   GOOGLE_ANALYTICS_KEY="UA-206526044-1" <<-CHANGE THIS WITH GA project>>
   ```
 
-### Deploy Server
-  Follow this article for setup server deployment with capistrano :
-  <a href="https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano">
-  How to Deploy a Rails 6 Application with Capistrano, Nginx, Puma, Postgresql, LetsEncrypt on Ubuntu 20.04`
-  </a>
-  ```
-  https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
-  ```  
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Deploy Server
   1. Access SSH
     access ssh to server production and prepare all requirement for server
 
-  2. Folder requirement
-    create folder to install in server production
-    ```
-    mkdir -p /home/ubuntu/template-project
-    mkdir -p /home/ubuntu/template-project/shared/tmp/sockets
-    ```
-
-  3. Setup Postgre sql and database
-  setup the database postgresql and provide the url :
+  2. Folder requirement in server production
   ```
+  mkdir -p /home/ubuntu/template-project
+  mkdir -p /home/ubuntu/template-project/shared/tmp/sockets
+  ```
+
+  3. Setup Postgre sql and database  
+  ```
+  setup the database postgresql and provide the url :
+  
   1. sudo -u postgres psql
   2. create database template_project;
   3. \password postgres
   ```
 
-  and result url for user postgres and password postgres in localhost env to be like this :
+  4. result url for user postgres and password postgres in localhost env to be like this :
   ```
   postgresql://postgres@localhost:5432/template_project
   ```
   
-  4. setup puma service and nginx :
-  check if there is messages like `Failed to restart puma_mysite_production.service: Unit puma_mysite_production.service not found.`
+  5. setup puma service and nginx : 
+  - try to `cap production deploy`  first
+  - if there is messages like `Failed to restart puma_mysite_production.service: Unit puma_mysite_production.service not found.`
+  - then follow this tutorial for setup puma service :
 
-  create service for puma 
+  `create service for puma`
   ```
   vi /etc/systemd/system/puma_template-project_production.service
   ```
   
-  and code script for service puma 
+  `code script for service puma`
   ```
   [Unit]
   Description=Puma HTTP Server for template_project (production)
@@ -155,6 +155,16 @@ You need to install :
   [Install]
   WantedBy=multi-user.target
   ```
+
+  Follow this article for more detail to setup server deployment with capistrano :
+  <a href="https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano">
+  How to Deploy a Rails 6 Application with Capistrano, Nginx, Puma, Postgresql, LetsEncrypt on Ubuntu 20.04`
+  </a>
+  ```
+  https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
+  ```  
+
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Setup Nginx
   1. make file for site nginx
@@ -193,11 +203,13 @@ You need to install :
   sudo ln -s /etc/nginx/sites-available/template-project.wellcode.io /etc/nginx/sites-enabled/template-project.wellcode.io
   ```
   
+  <p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Setup Local Project for Deploy Server
   and the you can follow this step for local project :
 
-  1. run bundle install
-  2. run cap install
+  1. run `bundle install`
+  2. run `cap install`
   3. replace code template project for deployment with your project in `config/deploy.rb`
   ```  
   server 'TEMPLATE_PROJECT.com', port: 22, roles: [:web, :app, :db], primary: true
@@ -212,11 +224,13 @@ You need to install :
 
   4. Copy your master.key to the shared dir.
   ```
-  ssh rails@mysite.com
-  mkdir -p apps/mysite/shared/config
-  # back on your machine
-  cd mysite
-  scp config/master.key rails@mysite.com:apps/mysite/shared/config
+  # SSH to server and create folder config in your project folder
+  ssh rails@template-project.com
+  mkdir -p /home/ubuntu/template-project/shared/config
+
+  # Back on your machine
+  cd template-project
+  scp config/master.key rails@template-project.com:~/template-project/shared/config
   ```
 
   5. Adjust your production database `config/database.yml` file and set env for deployment in `config/deploy.rb`.
@@ -233,13 +247,15 @@ You need to install :
   cap production deploy
   ```
 
-  access log for capistrano run :
+  7. access log for capistrano run :
   ```
   cap production rails:logs
   ```
 
-  7. Assets Sync
-  to turn on assets sync please see the document in `lib/tasks/asset_sync.rake`
+  8. Note 
+  - to turn on assets sync please see the document in `lib/tasks/asset_sync.rake`
+  - to setup WA please fill teh ENV for twillio.
+
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
