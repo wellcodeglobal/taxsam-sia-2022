@@ -40,7 +40,7 @@ Download dan clone this project to your local and change :
 - Replace all `TEMPLATE_PROJECT` from `app/views/*` to your project name.
 
   <p align="right">(<a href="#top">back to top</a>)</p>
-  
+
 ### Prerequisites
 
 You need to install :
@@ -206,7 +206,7 @@ You need to install :
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Setup Local Project for Deploy Server
-  and the you can follow this step for local project :
+  You can follow this step Deploy project :
 
   1. run `bundle install`
   2. run `cap install`
