@@ -88,6 +88,9 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+  # Roteate logs when it is 100MB in size and keep 100.
+  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 100, 104857600)
+  
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter

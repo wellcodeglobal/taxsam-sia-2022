@@ -97,6 +97,9 @@ You need to install :
   NEW_RELIC_LICENSE="d626813596683fbfde6ff0c817aad2832f8053e5" <<-CHANGE THIS WITH New Relic project>>
 
   GOOGLE_ANALYTICS_KEY="UA-206526044-1" <<-CHANGE THIS WITH GA project>>
+
+  AIRBRAKE_PROJECT_ID=""
+  AIRBRAKE_PROJECT_KEY=""
   ```
 
   <p align="right">(<a href="#top">back to top</a>)</p>
