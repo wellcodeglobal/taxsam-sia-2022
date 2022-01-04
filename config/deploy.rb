@@ -14,7 +14,8 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
 set :default_env, {
   PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
-  NODE_ENVIRONMENT: 'production'
+  NODE_ENVIRONMENT: 'production',
+  DATABASE_URL: "postgresql://postgres@localhost:5432/template_project"
 }
 
 
