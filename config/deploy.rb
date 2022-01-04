@@ -15,7 +15,7 @@ set :rbenv_roles, :all
 set :default_env, {
   PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
   NODE_ENVIRONMENT: 'production',
-  DATABASE_URL: "postgresql://postgres@localhost:5432/template_project"
+  DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/template_project"
 }
 
 
