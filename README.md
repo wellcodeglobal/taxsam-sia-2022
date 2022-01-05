@@ -36,12 +36,22 @@
 
 - [x] Template Rails 6 
 - [ ] Template Rails 7
-- [x] Monitoring Website (Google Analytics)
+- [x] User Activity Monitoring (Google Analytics)
 - [x] Monitoring Website (New Relic)
 - [x] Monitoring Website (Datadog)
 - [x] App Notification (Airbrake)
-- [ ] Server Notification (AWS Cloudwatch Alarm)
+- [x] Server Notification (AWS Cloudwatch Alarm)
+- [x] Monitoring & Centralized Log (Datadog logs)
 - [x] Auto Deploy (Capistrano)
+- [x] Default Template Framework (Metronic 7)
+- [x] Background Processing (Sidekiq & Redis)
+- [x] Assets Sync (AWS S3)
+- [x] Active Storage (AWS S3)
+- [x] 2FA Whatsapp (Twillio)
+- [x] Email Service (WG-Mail)
+- [x] Basic Component API, Service, Facede, Presenter
+- [x] Javascript Framework (Stimulus)
+- [x] CSS Framework (Boostrap Metronic 7)
 - [ ] Code Standardization rails (?)
 - [ ] Code Standardization JS (?)
 - [ ] Code Standardization Template/Framework (?)
