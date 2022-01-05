@@ -233,16 +233,73 @@ You need to install :
   sudo certbot --nginx -d alert-template-project.wellcode.io <-- change to domain name
   ```
   
-  5. Setup datadog for new server
+  <p align="right">(<a href="#top">back to top</a>)</p>
+  
+### Create Alarms CloudWatch
+  Follow this article for more detail to setup alarms cloudwatch :
+  
+  <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html">
+  
+  Create alarms that stop, terminate, reboot, or recover an instance
+  </a>
+  
+  After follow setup above then
+  Go to menu Amazon SNS to setup Notification then go to menu Subscription to Create New Subscription
+  - Choose Topic
+  - Choose Protocol -> ```Email```
+  - Fill Endpoint
+  - Save
+  
+  <p align="right">(<a href="#top">back to top</a>)</p>
+
+### Setup DataDog For New Server
+  If the installation already exist you can directly can check ```status dog```
+  
+  Installation : 
   ```
   DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=API_KEY DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
   ```
   - show status datadog `sudo datadog-agent status`
+
+  - Configure the Agent to collect request traces and logs
+  You can configure both APM and log management by editing the datadog.yaml file located in your host’s ```/etc/datadog-agent/``` directory
+  ```
+  # Trace Agent Specific Settings
+  apm_config:
+    enabled: true
+    env: production
+  ```
+  The Agent doesn’t collect logs by default, so you will need to enable log collection in the same ```datadog.yaml```
+  ```
+  # Logs agent
+    logs_enabled: true
+  ```
+  Save the file and restart the Agent to apply your recent changes:
+  ```
+  sudo service datadog-agent restart
+  ```
+  - Capture Rails Logs
+  
+  First, create a new directory and YAML file named after your log source in the Agent’s conf.d directory
+  ```
+  cd /etc/datadog-agent/conf.d/
+  mkdir ruby.d
+  touch ruby.d/conf.yaml
+  
+  # Log Information
+   logs:
+    - type: file
+      path: /path/to/app/log/development.log
+      service: production-rails-app
+      source: ruby
+  ```
+  Restart the Agent to load the new configuration files:
+  ```
+  sudo service datadog-agent restart
+  ```
   - Follow this article for more detail to setup Monitoring Rails applications with Datadog :
   <a href="https://www.datadoghq.com/blog/monitoring-rails-with-datadog/">Monitoring Rails applications with Datadog</a>
   
-  <p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Setup Local Project for Deploy Server
   You can follow this step Deploy project :
 
