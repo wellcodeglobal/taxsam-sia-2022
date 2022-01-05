@@ -1,9 +1,8 @@
-# if defined?(AssetSync)
-#   Rake::Task['webpacker:compile'].enhance do
-#     Rake::Task["assets:sync"].invoke
-#   end
-# end
-
+if defined?(AssetSync)
+  Rake::Task['webpacker:compile'].enhance do
+    Rake::Task["assets:sync"].invoke
+  end
+end
 
 # to enable assets syn plase full teh ENV for :
 # ASSET_HOST_NAME=""
