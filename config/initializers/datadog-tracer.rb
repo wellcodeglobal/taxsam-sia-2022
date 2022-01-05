@@ -2,5 +2,5 @@
 
 Datadog.configure do |c|
   c.env = 'production'
-  c.service = 'template-project'
+  c.service = 'rails'
 end
