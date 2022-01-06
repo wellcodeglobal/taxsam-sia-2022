@@ -242,7 +242,26 @@ You need to install :
   ```
   sudo certbot --nginx -d alert-template-project.wellcode.io <-- change to domain name
   ```
-  
+  <p align="right">(<a href="#top">back to top</a>)</p>
+
+### Change hostname server :
+
+ 1. Type the hostnamectl command :
+ 
+    ```sudo hostnamectl set-hostname newNameHere```
+    
+    Delete the old name and setup new name.
+    
+ 2. Next Edit the /etc/hosts file:
+ 
+    ```sudo nano /etc/hosts```
+    
+    Replace any occurrence of the existing computer name with your new hostname.
+    
+ 3. Reboot the system to changes take effect:
+ 
+    ```sudo reboot```
+    
   <p align="right">(<a href="#top">back to top</a>)</p>
   
 ### Create Alarms CloudWatch
@@ -309,6 +328,8 @@ You need to install :
   ```
   - Follow this article for more detail to setup Monitoring Rails applications with Datadog :
   <a href="https://www.datadoghq.com/blog/monitoring-rails-with-datadog/">Monitoring Rails applications with Datadog</a>
+  
+  <p align="right">(<a href="#top">back to top</a>)</p>
   
 ### Setup Local Project for Deploy Server
   You can follow this step Deploy project :
