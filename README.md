@@ -35,7 +35,7 @@
 ## Checklist Improvement
 
 - [x] Template Rails 6 
-- [ ] Template Rails 7
+- [x] Template Rails 7
 - [x] User Activity Monitoring (Google Analytics)
 - [x] Monitoring Website (New Relic)
 - [x] Monitoring Website (Datadog)
