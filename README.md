@@ -282,6 +282,8 @@ You need to install :
   <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Setup DataDog For New Server
+  Follow this Tutorial for more detail to setup Monitoring Rails applications with Datadog <a href="https://abstracted-feast-51a.notion.site/Tutorial-7fbed8bf1e5b4c37b67ee70510389166" target="_blank">Monitoring Rails applications with Datadog</a>
+  
   If the installation already exist you can directly can check ```status dog```
   
   Installation : 
