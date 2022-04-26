@@ -4,17 +4,30 @@ MoneyRails.configure do |config|
   config.default_currency = :idr
   Money.locale_backend = :i18n
 
+  
   config.register_currency = {
-      :id                  => :idr, 
-      :priority            => 1,
-      :iso_code            => "IDR",
-      :name                => "Rupiah",
-      :symbol              => "Rp.",
-      :symbol_first        => true,
-      :subunit             => "rupiah",
-      :subunit_to_unit     => 100,
-      :thousands_separator => ".",
-      :decimal_mark        => ","
+    id: :idr,
+    priority: 1,
+    iso_code: 'IDR',
+    name: 'Rupiah',
+    symbol: 'Rp',
+    symbol_first: true,
+    subunit: 'rupiah',
+    subunit_to_unit: 100,
+    thousands_separator: '.',
+    decimal_mark: ','
+  }
+  config.register_currency = {
+    id: :usd,
+    priority: 1,
+    iso_code: 'USD',
+    name: 'US Dollar',
+    symbol: '$',
+    symbol_first: true,
+    subunit: 'cents',
+    subunit_to_unit: 100,
+    thousands_separator: '.',
+    decimal_mark: ','
   }
 
   # To set the default currency

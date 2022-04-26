@@ -1,8 +1,7 @@
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
-Rails.application.routes.draw do
-  #Authrization Login/Register
+Rails.application.routes.draw do  
   get 'home', to: "homes#index"
   get 'err_page', to: "homes#err_page"
 

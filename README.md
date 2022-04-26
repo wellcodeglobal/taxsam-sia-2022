@@ -4,7 +4,7 @@
     <img src="https://d2sb5cns5ryu46.cloudfront.net/wp-content/uploads/2021/01/HEADER-WELLCODE-COLOR-500x94.png" alt="Logo" width="300" height="60">
   </a>
 
-  <h3 align="center">-README TEMPLATE PROJECT WELLCODE-</h3>
+  <h3 align="center">-README Taxsam SIA WELLCODE-</h3>
 
   <p align="center">
     This is Template to jumpstart your projects!    
@@ -63,7 +63,7 @@
 Download dan clone this project to your local and change :
 - `database.yml`
 - `asset_sync.yml`
-- Replace all `TEMPLATE_PROJECT` from `app/views/*` to your project name.
+- Replace all `TAXSAM SIA` from `app/views/*` to your project name.
 
   <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -85,7 +85,7 @@ You need to install :
 1. Go to yout project directory
 2. Clone the repo
    ```sh
-   git clone https://github.com/wellcodeglobal/template_project.git
+   git clone https://github.com/wellcodeglobal/taxsam_sia.git
    ```
 3. install rails and bundle Instal
    ```sh
@@ -148,13 +148,13 @@ You need to install :
   setup the database postgresql and provide the url :
   
   1. sudo -u postgres psql
-  2. create database template_project;
+  2. create database taxsam_sia;
   3. \password postgres
   ```
 
   4. result url for user postgres and password postgres in localhost env to be like this :
   ```
-  postgresql://postgres@localhost:5432/template_project
+  postgresql://postgres@localhost:5432/taxsam_sia
   ```
   
   5. setup puma service and nginx : 
@@ -170,7 +170,7 @@ You need to install :
   `code script for service puma`
   ```
   [Unit]
-  Description=Puma HTTP Server for template_project (production)
+  Description=Puma HTTP Server for taxsam_sia (production)
   After=network.target
 
   [Service]
@@ -338,16 +338,16 @@ You need to install :
 
   1. run `bundle install`
   2. run `cap install`
-  3. replace code template project for deployment with your project in `config/deploy.rb`
+  3. replace code Taxsam SIA for deployment with your project in `config/deploy.rb`
   ```  
-  server 'TEMPLATE_PROJECT.com', port: 22, roles: [:web, :app, :db], primary: true
-  set :application, "TEMPLATE_PROJECT"
-  set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
+  server 'TAXSAM SIA.com', port: 22, roles: [:web, :app, :db], primary: true
+  set :application, "TAXSAM SIA"
+  set :repo_url, "git@github.com:wellcodeglobal/taxsam_sia.git"
   ```
 
   4. setup pub ssh with your project ssh key public server, and change the path in `config/deploy.rb`
   ```
-  set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template_project.pub) }
+  set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/taxsam_sia.pub) }
   ```
 
   4. Copy your master.key to the shared dir.
@@ -366,7 +366,7 @@ You need to install :
   set :default_env, {
     PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
     NODE_ENVIRONMENT: 'production',
-    DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/template_project"
+    DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/taxsam_sia"
   }
   ```  
 
@@ -395,9 +395,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/template_project`)
-3. Commit your Changes (`git commit -m 'Add some template_project'`)
-4. Push to the Branch (`git push origin feature/template_project`)
+2. Create your Feature Branch (`git checkout -b feature/taxsam_sia`)
+3. Commit your Changes (`git commit -m 'Add some taxsam_sia'`)
+4. Push to the Branch (`git push origin feature/taxsam_sia`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -417,6 +417,6 @@ Distributed under the <a href="https://wellcode.io"> WELLCODE.IO </a> License.
 
 Wellcode.io - (https://wellcode.io/) - admin@wellcode.io
 
-Project Link: [https://github.com/wellcodeglobal/template_project.git](https://github.com/wellcodeglobal/template_project.git)
+Project Link: [https://github.com/wellcodeglobal/taxsam_sia.git](https://github.com/wellcodeglobal/taxsam_sia.git)
 
 <p align="right">(<a href="#top">back to top</a>)</p>

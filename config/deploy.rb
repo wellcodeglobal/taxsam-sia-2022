@@ -1,48 +1,48 @@
-lock "~> 3.16.0"
+# lock "~> 3.16.0"
 
-# replace obvious parts
-server 'ec2-54-151-254-250.ap-southeast-1.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
-set :application, "template-project"
-set :repo_url, "git@github.com:wellcodeglobal/template_project.git"
-set :branch, "main"
+# # replace obvious parts
+# server 'ec2-54-151-254-250.ap-southeast-1.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
+# set :application, "template-project"
+# set :repo_url, "git@github.com:wellcodeglobal/taxsam_sia.git"
+# set :branch, "main"
 
-set :rbenv_ruby, '3.0.0'
-set :rbenv_path, '/home/ubuntu/.rbenv'
-set :rbenv_type, :system
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
-set :rbenv_roles, :all
-set :default_env, {
-  PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
-  NODE_ENVIRONMENT: 'production'
-}
+# set :rbenv_ruby, '3.0.0'
+# set :rbenv_path, '/home/ubuntu/.rbenv'
+# set :rbenv_type, :system
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+# set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+# set :rbenv_roles, :all
+# set :default_env, {
+#   PATH: '$HOME/.nvm/versions/node/v14.16.0/bin/:$PATH',  
+#   NODE_ENVIRONMENT: 'production'
+# }
 
-set :user, 'ubuntu'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
-set :bundle_jobs,     4
+# set :user, 'ubuntu'
+# set :puma_threads,    [4, 16]
+# set :puma_workers,    0
+# set :bundle_jobs,     4
 
-set :pty,             true
-set :use_sudo,        false
-set :stage,           :production
-set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_access_log, "#{release_path}/log/puma.access.log"
-set :puma_error_log,  "#{release_path}/log/puma.error.log"
-set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template-project.cer) }
-set :puma_preload_app, true
-set :puma_worker_timeout, nil
-set :puma_init_active_record, true  
+# set :pty,             true
+# set :use_sudo,        false
+# set :stage,           :production
+# set :deploy_via,      :remote_cache
+# set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
+# set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+# set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
+# set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
+# set :puma_access_log, "#{release_path}/log/puma.access.log"
+# set :puma_error_log,  "#{release_path}/log/puma.error.log"
+# set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/template-project.cer) }
+# set :puma_preload_app, true
+# set :puma_worker_timeout, nil
+# set :puma_init_active_record, true  
 
-append :linked_files, "config/master.key"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
+# append :linked_files, "config/master.key"
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads"
 
-namespace :deploy do
-  after  :starting, 'envvars:load'
-end
+# namespace :deploy do
+#   after  :starting, 'envvars:load'
+# end
 
 # https://webdevchallenges.com/how-to-deploy-a-rails-6-application-with-capistrano
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HomesController < ApplicationController
+  before_action :require_login
+  
   layout 'homes'
   def index; end
 
