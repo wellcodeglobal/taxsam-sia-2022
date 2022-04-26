@@ -18,6 +18,11 @@ class Clearance::SessionsController < Clearance::BaseController
     run_session_creation
   end
 
+  def destroy
+    sign_out
+    redirect_to url_after_destroy
+  end
+  
   private
     def run_session_creation
       @user = authenticate(params)
@@ -36,4 +41,22 @@ class Clearance::SessionsController < Clearance::BaseController
       return unless signed_in?
       redirect_to root_path
     end  
+
+    def redirect_signed_in_users
+      if signed_in?
+        redirect_to url_for_signed_in_users
+      end
+    end
+  
+    def url_after_create
+      Clearance.configuration.redirect_url
+    end
+  
+    def url_after_destroy
+      sign_in_url
+    end
+  
+    def url_for_signed_in_users
+      url_after_create
+    end
 end

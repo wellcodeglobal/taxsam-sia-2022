@@ -11,8 +11,10 @@
 #  encrypted_password :string(128)      not null
 #  confirmation_token :string(128)
 #  remember_token     :string(128)      not null
+#  company_id         :uuid
 #
 class User < ApplicationRecord
   include Clearance::User
   has_one_attached :avatar
+  belongs_to :company
 end
