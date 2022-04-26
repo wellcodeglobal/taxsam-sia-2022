@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  debit_idr: 9.99
+  credit_idr: 9.99
+  description: MyString
+  general_transaction: one
+  company: one
+
+two:
+  code: MyString
+  debit_idr: 9.99
+  credit_idr: 9.99
+  description: MyString
+  general_transaction: two
+  company: two

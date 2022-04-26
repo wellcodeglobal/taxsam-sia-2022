@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2022-04-26
+  code: MyString
+  debit_idr: 9.99
+  credit_idr: 9.99
+  journalable: one
+  journalable_type: Journalable
+
+two:
+  date: 2022-04-26
+  code: MyString
+  debit_idr: 9.99
+  credit_idr: 9.99
+  journalable: two
+  journalable_type: Journalable

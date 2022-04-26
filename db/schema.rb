@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_26_103821) do
+ActiveRecord::Schema.define(version: 2022_04_26_145041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "group"
+    t.uuid "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_accounts_on_company_id"
+  end
 
   create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +63,45 @@ ActiveRecord::Schema.define(version: 2022_04_26_103821) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "general_transaction_lines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.decimal "debit_idr_cents", default: "0.0", null: false
+    t.string "debit_idr_currency", default: "IDR", null: false
+    t.decimal "credit_idr_cents", default: "0.0", null: false
+    t.string "credit_idr_currency", default: "IDR", null: false
+    t.string "description"
+    t.uuid "general_transaction_id", null: false
+    t.uuid "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_general_transaction_lines_on_company_id"
+    t.index ["general_transaction_id"], name: "index_general_transaction_lines_on_general_transaction_id"
+  end
+
+  create_table "general_transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "number_evidence"
+    t.date "date"
+    t.uuid "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_general_transactions_on_company_id"
+  end
+
+  create_table "journals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "date"
+    t.string "code"
+    t.string "description"
+    t.decimal "debit_idr_cents", default: "0.0", null: false
+    t.string "debit_idr_currency", default: "IDR", null: false
+    t.decimal "credit_idr_cents", default: "0.0", null: false
+    t.string "credit_idr_currency", default: "IDR", null: false
+    t.string "journalable_type", null: false
+    t.uuid "journalable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["journalable_type", "journalable_id"], name: "index_journals_on_journalable"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,7 +115,11 @@ ActiveRecord::Schema.define(version: 2022_04_26_103821) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  add_foreign_key "accounts", "companies"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "general_transaction_lines", "companies"
+  add_foreign_key "general_transaction_lines", "general_transactions"
+  add_foreign_key "general_transactions", "companies"
   add_foreign_key "users", "companies"
 end
