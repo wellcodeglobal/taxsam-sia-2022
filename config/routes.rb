@@ -25,6 +25,5 @@ Rails.application.routes.draw do
     
     resources :journals
     resources :general_transactions
-    resources :general_transactions_lines
   end
 end

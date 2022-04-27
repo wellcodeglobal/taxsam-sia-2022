@@ -14,8 +14,10 @@
 #  journalable_id      :uuid             not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  company_id          :uuid
 #
 class Journal < ApplicationRecord
+  belongs_to :company
   belongs_to :journalable, polymorphic: true
 
   monetize :debit_idr_cents, with_currency: :idr

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_26_145041) do
+ActiveRecord::Schema.define(version: 2022_04_27_073723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 2022_04_26_145041) do
     t.uuid "journalable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "company_id"
+    t.index ["company_id"], name: "index_journals_on_company_id"
     t.index ["journalable_type", "journalable_id"], name: "index_journals_on_journalable"
   end
 
@@ -121,5 +123,6 @@ ActiveRecord::Schema.define(version: 2022_04_26_145041) do
   add_foreign_key "general_transaction_lines", "companies"
   add_foreign_key "general_transaction_lines", "general_transactions"
   add_foreign_key "general_transactions", "companies"
+  add_foreign_key "journals", "companies"
   add_foreign_key "users", "companies"
 end

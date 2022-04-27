@@ -12,4 +12,8 @@
 #
 class Company < ApplicationRecord
   has_many :users, dependent: :destroy
+  has_many :accounts, dependent: :destroy
+  has_many :general_transactions, dependent: :destroy
+  has_many :general_transaction_lines, dependent: :destroy
+  has_many :journals, dependent: :destroy
 end

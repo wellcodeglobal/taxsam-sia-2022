@@ -1,2 +1,44 @@
-h1 Admin::GeneralTransactions#new
-p Find me in app/views/admin/general_transactions/new.html.slim
+.d-flex.flex-column-fluid
+    .container-fluid
+      .card.card-custom.card-shadowless
+        .card-header.card-header-tabs-line
+          ul.nav.nav-dark.nav-bold.nav-tabs.nav-tabs-line data-remember-tab="tab_id" role="tablist" 
+            li.nav-item
+              a.nav-link[
+                class="#{'active' if params[:tab].blank?}"
+                aria-selected="true" 
+                data-toggle="tab" 
+                href="#incomes" 
+                role="tab"
+              ] Transaksi
+            li.nav-item
+              a.nav-link[
+                class="#{'active' if params[:tab] == 'assets'}"
+                aria-selected="false" 
+                data-toggle="tab" 
+                href="#assets" 
+                role="tab"
+              ] Input Asset
+            li.nav-item
+              a.nav-link[
+                class="#{'active' if params[:tab] == 'journals'}"
+                aria-selected="false" 
+                data-toggle="tab" 
+                href="#journals" 
+                role="tab"
+              ] Jurnal
+
+        .card-body.pt-0
+          .tab-content.pt-0
+            #incomes.tab-pane class="#{'active' if params[:tab].blank?}"
+              = form_for :transaction, url: admin_general_transactions_path, method: :post do |form|
+                = render 'admin/general_transactions/forms/form_transaction', f: form
+
+            #assets.tab-pane class="#{'active' if params[:tab] == 'assets'}"
+              | Asset
+            /   = form_for @asset, url: admin_assets_path, method: :post do |form|
+            /     = render 'form_assets', f: form
+
+            #journals.tab-pane class="#{'active' if params[:tab] == 'journals'}"
+              = form_for :journal, url: admin_journals_path, method: :post do |form|
+                = render 'admin/general_transactions/forms/form_journal', f: form

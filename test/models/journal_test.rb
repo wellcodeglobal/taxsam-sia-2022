@@ -14,6 +14,7 @@
 #  journalable_id      :uuid             not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  company_id          :uuid
 #
 require "test_helper"
 
