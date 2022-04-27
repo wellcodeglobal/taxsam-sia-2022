@@ -14,4 +14,17 @@ Rails.application.routes.draw do
     root to: "homes#index"
   end
 
+  namespace :admin do
+    resources :users
+    resources :accounts
+    namespace :accounts do
+      post 'actions/import',
+          to: 'actions#import',
+          as: :action_import
+    end
+    
+    resources :journals
+    resources :general_transactions
+    resources :general_transactions_lines
+  end
 end
