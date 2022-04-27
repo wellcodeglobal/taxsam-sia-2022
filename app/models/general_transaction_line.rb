@@ -15,6 +15,7 @@
 #  updated_at             :datetime         not null
 #
 class GeneralTransactionLine < ApplicationRecord
+  include GeneralTransactionLines::SetupJournal
   belongs_to :general_transaction
   belongs_to :company
   has_many :journals, as: :journalable, dependent: :destroy

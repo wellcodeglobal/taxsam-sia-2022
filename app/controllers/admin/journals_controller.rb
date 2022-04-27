@@ -1,19 +1,5 @@
 class Admin::JournalsController < AdminController
   def index
-  end
-
-  def create
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def show
-  end
-
-  def destroy
-  end
+    @journals = Journal.all.page(params[:page]).per(10)
+  end  
 end

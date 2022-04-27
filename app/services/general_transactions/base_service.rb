@@ -10,11 +10,13 @@ module GeneralTransactions
     protected
 
     def general_transaction_params
-      @general_transaction_params ||= @params
-        .require(:general_transaction)
-        .permit(
-          
-        )
+      @general_transaction_params ||= @params.require(:transaction).permit(:id, :date, :number_evidence)
+    end
+
+    def general_transaction_lines_params
+      debit_params = @params.require(:general_transaction_line_debit).values
+      credit_params = @params.require(:general_transaction_line_credit).values
+      @general_transaction_lines_params ||= debit_params + credit_params
     end
   end
 end

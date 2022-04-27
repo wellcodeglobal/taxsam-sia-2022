@@ -15,8 +15,8 @@ div[
       label.col-sm-2.col-form-label
         | Kode Akun 
       .col-sm-9
-        = select_tag 'general_transaction_line[0][account_id]',
-          options_for_select(@accounts.pluck(:code, :id), ""),
+        = select_tag 'general_transaction_line_debit[0][code]',
+          options_for_select(select_account_options, options[:code]),
           include_blank: '== Pilih ==',
           class: 'form-control selectize',
           placeholder: 'Kode Akun',
@@ -32,7 +32,7 @@ div[
           | Nominal Transaksi
       .col-sm-9
         .position-absolute.p-3 Rp.
-        = text_field_tag 'general_transaction_line[0][debit_idr]', 0,
+        = text_field_tag 'general_transaction_line_debit[0][debit_idr]', options[:price],
           class: 'form-control pl-10 js-nominal',
           required: true,
           data: {\
@@ -44,11 +44,11 @@ div[
       label.col-sm-2.col-form-label
         | Deskripsi
       .col-sm-9
-        = text_field_tag 'general_transaction_line[0][description]', "",
+        = text_field_tag 'general_transaction_line_debit[0][description]', options[:description],
           class: 'form-control',
           required: true,
           data: { target: 'dynamic-input.input' }
-
+    hr
   .form-group.row.d-block.text-center.mt-2
     button.btn.btn-success type='button' data-action='click->dynamic-input#add'
       | Tambah Transaksi

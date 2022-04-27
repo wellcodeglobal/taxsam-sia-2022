@@ -14,8 +14,8 @@
       .col-10
         = f.text_field :number_evidence, class: "form-control", placeholder: "Nomor Bukti", required: true
 
-    = render "/admin/general_transactions/forms/form_credit", f: f
-    = render "/admin/general_transactions/forms/form_debit", f: f
+    = render "/admin/general_transactions/forms/form_credit", f: f, options: {}
+    = render "/admin/general_transactions/forms/form_debit", f: f, options: {}
   .card-footer
     .row
       .col-12.text-center

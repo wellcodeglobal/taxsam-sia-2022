@@ -1,5 +1,5 @@
 class Admin::GeneralTransactionsController < AdminController
-  before_action :general_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :general_transaction, only: [:show, :update, :destroy]
 
   def index
     @general_transactions = GeneralTransaction.all.page(params[:page]).per(10)
@@ -15,16 +15,13 @@ class Admin::GeneralTransactionsController < AdminController
         alert: "Transaksi gagal di simpan, #{service.error_messages.to_sentence}"
     end
 
-    redirect_to admin_general_transaction_path(service.transaction), 
+    redirect_to admin_general_transactions_path, 
       notice: 'Transaksi berhasil di simpan'
   end
 
   def new
     @transaction = GeneralTransaction.new    
     @accounts = current_company.accounts
-  end
-
-  def edit
   end
 
   def show

@@ -62,10 +62,10 @@
                   td.text-center
                     = general_transaction.general_transaction_lines.count
                   td.text-center
-                    = link_to edit_admin_general_transaction_path(id: general_transaction.id), class: "btn btn-warning btn-sm mr-2" do                  
-                      i.la.la-edit
-                    = link_to admin_general_transaction_path(general_transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mr-2" do                  
-                      i.la.la-trash
+                    = link_to admin_general_transaction_path(id: general_transaction.id), class: "btn btn-primary btn-sm mr-2" do
+                      span.la.la-eye
+                    = link_to admin_general_transaction_path(general_transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do                  
+                      span.la.la-trash
         .card-footer
           .m-auto
             = paginate @general_transactions
