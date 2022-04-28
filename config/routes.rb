@@ -16,8 +16,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :accounts
-    namespace :accounts do
+    resources :accounts    
+    namespace :accounts do      
+      get "actions/download_template", 
+        to: "actions#download_template", 
+        as: :download_template
+
       post 'actions/import',
           to: 'actions#import',
           as: :action_import

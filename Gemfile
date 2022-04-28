@@ -35,6 +35,11 @@ gem 'newrelic_rpm'
 gem 'airbrake'
 gem 'kaminari'
 
+# Excel Write
+gem 'roo-google'
+gem 'caxlsx'
+gem 'caxlsx_rails'
+
 group :development, :test do
   gem 'break'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
