@@ -2,7 +2,7 @@ class Admin::GeneralTransactionsController < AdminController
   before_action :general_transaction, only: [:show, :update, :destroy]
 
   def index
-    @general_transactions = GeneralTransaction.all.page(params[:page]).per(10)
+    @general_transactions = GeneralTransaction.all.order(date: :desc).page(params[:page]).per(10)
   end
 
   def create

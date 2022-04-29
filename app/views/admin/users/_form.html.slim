@@ -1,0 +1,24 @@
+.modal-body
+  .form-group
+    label Email
+    .input-group
+      input.form-control[
+        name="user[email]"
+        placeholder=("Email User")
+        type="text"
+        value="#{@user&.email}"
+      ]
+
+  .form-group
+    label Password
+    .input-group
+      input.form-control[
+        name="user[password]"
+        placeholder=("Password User")
+        type="password"
+        value=""
+      ]
+      
+.modal-footer
+  a.btn.btn-light-primary.font-weight-bold href="#{admin_users_path}" data-dismiss="modal" type="button"  Batal
+  = f.submit "Simpan", class: "btn btn-primary"
