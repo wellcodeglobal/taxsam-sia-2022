@@ -21,7 +21,7 @@
     label Group Akun
     .col-12.px-0
       = select_tag 'account[group]',
-        options_for_select(["Debit", "Credit"], @account&.group),
+        options_for_select(["debit", "credit"], @account&.group),
         include_blank: '== Pilih ==',
         class: 'form-control font-size-sm',
         data: { controller: 'select2' }
