@@ -29,5 +29,11 @@ Rails.application.routes.draw do
     
     resources :journals
     resources :general_transactions
+    resources :reports
+    namespace :reports do      
+      post 'actions/import',
+          to: 'actions#import',
+          as: :action_import
+    end
   end
 end

@@ -2,7 +2,7 @@
   #kt_subheader.subheader.py-2.py-lg-4.subheader-solid
     .container-fluid.d-flex.align-items-center.justify-content-between.flex-wrap.flex-sm-nowrap
       .d-flex.align-items-center.flex-wrap.mr-2
-        h5.text-dark.font-weight-bold.mt-2.mb-2.mr-2 Daftar Transaksi
+        h5.text-dark.font-weight-bold.mt-2.mb-2.mr-2 Daftar Laporan
 
       #kt_subheader_search.d-flex.align-items-center
         .ml-0.ml-sm-2
@@ -25,49 +25,69 @@
             span.card-icon
               i.flaticon2-favourite.text-primary
             h3.card-label
-              | List Transaksi
-              br
-              span.font-size-sm.text-dark-50.font-weight-bold
-                | Total #{GeneralTransaction.count} transaksi
-
+              | List Laporan
+              
           .card-toolbar.justify-content-end
-            a.btn.btn-primary.font-weight-bolder.mb-2 type="button" href="#{new_admin_general_transaction_path}"
-              i.la.la-plus
-              | Tambah Transaksi
+            .dropdown.dropdown-inline.mr-2.mb-2
+              button.btn.btn-light-primary.font-weight-bolder.dropdown-toggle[
+                aria-expanded="false"
+                aria-haspopup="true"
+                type="button"
+                data-toggle="dropdown"
+              ]
+                i.la.la-download
+                | Import
+              .dropdown-menu.dropdown-menu-sm.dropdown-menu-right
+                ul.nav.flex-column.nav-hover
+                  li.nav-header.font-weight-bolder.text-uppercase.text-primary.pb-2.px-4
+                    | Pilih:
+                  / li.nav-item
+                    a.nav-link href="#{admin_accounts_download_template_path}" target="_blank"
+                      i.nav-icon.la.la-file-excel-o
+                      span.nav-text.ml-2 Download Template Import
+
+                  li.nav-item
+                    = form_with method: :post,
+                      url: admin_accounts_action_import_path,
+                      multipart: true,
+                      data: {controller: 'forms--autouploader-single-file'} do
+                      label.nav-link.cursor-pointer
+                        input[
+                          name="file"
+                          style="position:absolute;top:0;left:0;opacity:0;visibility:hidden;"
+                          type="file"
+                          data-target="forms--autouploader-single-file.file"
+                        ]
+                        i.nav-icon.la.la-file-excel-o
+                        span.nav-text.ml-2 Import Data Akun Excel
+            
 
         .card-body
           table.table 
             thead
               tr
                 th.text-center width="10%"
-                  | Tanggal
+                  | Nama
                 th.text-center width="10%"
-                  | Nomor Bukti
+                  | Perusahaan
                 th.text-center width="20%"
-                  | Kode Akun
+                  | Ditampilan
                 th.text-center width="20%"
-                  | Deskripsi
-                th.text-center width="20%"
-                  | Debit
-                th.text-center width="20%"
-                  | Credit
+                  | Action
 
             tbody
-              - @journals.each do |journal|
+              - @reports.each do |report|
                 tr 
                   td.text-center
-                    = journal.date.strftime("%d %b %Y")
+                    = report.name
                   td.text-center
-                    = journal.number_evidence
+                    = report.company.name
                   td.text-center
-                    = journal.code
+                    = report.shown ? 'Ditampilkan' : 'Tidak Ditampilkan'
                   td.text-center
-                    = journal.description
-                  td.text-center
-                    = journal.debit_idr.format
-                  td.text-center
-                    = journal.credit_idr.format
+                    = link_to 'Lihat', admin_report_path(report)
+                  
         .card-footer
           .m-auto
-            = paginate @journals
+            = paginate @reports
 
