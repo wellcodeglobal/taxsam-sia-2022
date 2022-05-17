@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id         :uuid             not null, primary key
+#  name       :string
+#  order      :integer
+#  shown      :boolean
+#  company_id :uuid             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  order: 1
+  company: one
+  shown: false
+
+two:
+  name: MyString
+  order: 1
+  company: two
+  shown: false

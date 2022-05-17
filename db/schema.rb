@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_27_073723) do
+ActiveRecord::Schema.define(version: 2022_05_17_120529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -100,8 +100,31 @@ ActiveRecord::Schema.define(version: 2022_04_27_073723) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "company_id"
+    t.string "number_evidence"
     t.index ["company_id"], name: "index_journals_on_company_id"
     t.index ["journalable_type", "journalable_id"], name: "index_journals_on_journalable"
+  end
+
+  create_table "report_lines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "order"
+    t.string "codes", default: [], array: true
+    t.string "formula"
+    t.string "group"
+    t.uuid "report_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_report_lines_on_report_id"
+  end
+
+  create_table "reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "order"
+    t.boolean "shown"
+    t.uuid "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_reports_on_company_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -124,5 +147,7 @@ ActiveRecord::Schema.define(version: 2022_04_27_073723) do
   add_foreign_key "general_transaction_lines", "general_transactions"
   add_foreign_key "general_transactions", "companies"
   add_foreign_key "journals", "companies"
+  add_foreign_key "report_lines", "reports"
+  add_foreign_key "reports", "companies"
   add_foreign_key "users", "companies"
 end
