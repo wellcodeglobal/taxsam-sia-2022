@@ -1,0 +1,20 @@
+table.table 
+  thead
+    tr
+      th width="10%"
+        | Nama
+      th.text-center width="10%"
+        | Kode
+      th.text-center width="10%"
+        | Value
+
+  tbody
+    - @report_facede.table_reports.each do |table_report|
+      tr style="#{ table_report[:styles] }"
+        td
+          = table_report[:name]
+        td.text-center
+          = table_report[:code]
+        td.text-center
+          = table_report[:value]
+        

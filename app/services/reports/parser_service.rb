@@ -26,8 +26,7 @@ module Reports
     end
 
     def is_row_valid? row
-      return false if row[FIELD_MAP[:name]].blank?
-      return false if row[FIELD_MAP[:code]].blank?
+      return false if row[FIELD_MAP[:name]].blank?      
       true
     end
 
@@ -53,6 +52,7 @@ module Reports
       end
 
       new_report_line.formula = formula
+      new_report_line.group = group
       new_report_line.order = order      
     end
 

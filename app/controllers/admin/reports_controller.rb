@@ -3,7 +3,7 @@ class Admin::ReportsController < AdminController
     @reports = Report.all.page(params[:page]).per(10)
   end
 
-  def show
-    @report = Report.find(params[:id])
+  def show    
+    @report_facede = Admin::Reports::IndexFacade.new(params)
   end
 end

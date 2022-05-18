@@ -18,6 +18,47 @@
                       path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"
                       
   .d-flex.flex-column-fluid
+    / .container-fluid
+    /   .card.card-custom
+    /     .card-header
+    /       .card-title
+    /         span.card-icon
+    /           i.flaticon2-favourite.text-primary
+    /         h3.card-label
+    /           | Laporan #{@report_facede.report.name}
+              
+    /       .card-toolbar.justify-content-end
+    /     .card-body
+    /       table.table 
+    /         thead
+    /           tr
+    /             th width="10%"
+    /               | Nama
+    /             th.text-center width="10%"
+    /               | Kode
+    /             th.text-center width="10%"
+    /               | Category
+    /             th.text-center width="20%"
+    /               | Formula
+
+    /         tbody
+    /           - @report_facede.report.report_lines.each do |report_line|
+    /             tr 
+    /               td
+    /                 = report_line.name
+    /               td.text-center
+    /                 = report_line.codes
+    /               td.text-center
+    /                 = report_line.group
+    /               td.text-center
+    /                 = report_line.formula
+                  
+                  
+    /     .card-footer
+    /       .m-auto
+    /         = paginate @report_facede.report.report_lines.page(params[:page])
+                    
+  .d-flex.flex-column-fluid
     .container-fluid
       .card.card-custom
         .card-header
@@ -25,32 +66,7 @@
             span.card-icon
               i.flaticon2-favourite.text-primary
             h3.card-label
-              | Laporan #{@report.name}
-              
-          .card-toolbar.justify-content-end
+              | Laporan #{@report_facede.report.name}
+                            
         .card-body
-          table.table 
-            thead
-              tr
-                th width="10%"
-                  | Nama
-                th.text-center width="10%"
-                  | Kode
-                th.text-center width="20%"
-                  | Formula
-
-            tbody
-              - @report.report_lines.each do |report_line|
-                tr 
-                  td
-                    = report_line.name
-                  td.text-center
-                    = report_line.codes
-                  td.text-center
-                    = report_line.formula
-                  
-                  
-        .card-footer
-          .m-auto
-            = paginate @report.report_lines.page(params[:page])
-
+          = render "admin/reports/partials/table_report_lines"

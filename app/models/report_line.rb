@@ -14,6 +14,11 @@
 #
 class ReportLine < ApplicationRecord
   belongs_to :report
+  default_scope { order(order: :asc) }
 
-  
+  enum group: {
+    category: "category",
+    component: "component",
+    accumulation: "accumulation"
+  }
 end
