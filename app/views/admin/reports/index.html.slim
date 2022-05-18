@@ -48,7 +48,7 @@
 
                   li.nav-item
                     = form_with method: :post,
-                      url: admin_accounts_action_import_path,
+                      url: admin_reports_action_import_path,
                       multipart: true,
                       data: {controller: 'forms--autouploader-single-file'} do
                       label.nav-link.cursor-pointer

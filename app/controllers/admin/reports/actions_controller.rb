@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  module Accounts
+  module Reports
     class ActionsController < Admin::ReportsController
       def import
         if !parser_service.run
