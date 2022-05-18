@@ -14,4 +14,6 @@
 #
 class ReportLine < ApplicationRecord
   belongs_to :report
+
+  
 end
