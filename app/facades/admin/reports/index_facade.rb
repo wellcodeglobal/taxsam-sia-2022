@@ -21,7 +21,6 @@ module Admin
         def add_category_report report_line
           {
             name: report_line.name,
-            code: report_line.codes.join(', '),
             value: "",
             styles: "background-color: antiquewhite;"
           }
@@ -39,17 +38,15 @@ module Admin
           value = eval(formula)
           {
             name: report_line.name,
-            code: report_line.codes.join(', '),
             value: value,
             styles: ""
           }
         end
 
         def add_accumulation_report report_line
-          value = 0
+          value = @table_reports.pluck(:value).map(&:to_i).sum
           {
             name: report_line.name,
-            code: report_line.codes.join(', '),
             value: value,
             styles: "background-color: gray;"
           }

@@ -4,8 +4,6 @@ table.table
       th width="10%"
         | Nama
       th.text-center width="10%"
-        | Kode
-      th.text-center width="10%"
         | Value
 
   tbody
@@ -13,8 +11,6 @@ table.table
       tr style="#{ table_report[:styles] }"
         td
           = table_report[:name]
-        td.text-center
-          = table_report[:code]
         td.text-center
           = table_report[:value]
         
