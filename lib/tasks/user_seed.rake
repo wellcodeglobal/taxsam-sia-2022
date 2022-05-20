@@ -16,5 +16,11 @@ namespace :user do
     user.company = company
 
     user.save!
+
+    user = User.find_or_initialize_by(email: "admin@taxsam.co")
+    user.password = "password"
+    user.company = company
+
+    user.save
   end
 end
