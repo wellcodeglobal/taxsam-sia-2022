@@ -31,6 +31,39 @@
                 | Total #{GeneralTransaction.count} transaksi
 
           .card-toolbar.justify-content-end
+            .dropdown.dropdown-inline.mr-2.mb-2
+              button.btn.btn-light-primary.font-weight-bolder.dropdown-toggle[
+                aria-expanded="false"
+                aria-haspopup="true"
+                type="button"
+                data-toggle="dropdown"
+              ]
+                i.la.la-download
+                | Export/Import
+              .dropdown-menu.dropdown-menu-sm.dropdown-menu-right
+                ul.nav.flex-column.nav-hover
+                  li.nav-header.font-weight-bolder.text-uppercase.text-primary.pb-2.px-4
+                    | Pilih:
+                  li.nav-item
+                    a.nav-link href="#{admin_journals_download_template_path}" target="_blank"
+                      i.nav-icon.la.la-file-excel-o
+                      span.nav-text.ml-2 Download Template Transaksi
+
+                  li.nav-item
+                    = form_with method: :post,
+                      url: admin_journals_action_import_path,
+                      multipart: true,
+                      data: {controller: 'forms--autouploader-single-file'} do
+                      label.nav-link.cursor-pointer
+                        input[
+                          name="file"
+                          style="position:absolute;top:0;left:0;opacity:0;visibility:hidden;"
+                          type="file"
+                          data-target="forms--autouploader-single-file.file"
+                        ]
+                        i.nav-icon.la.la-file-excel-o
+                        span.nav-text.ml-2 Import Transaksi
+
             a.btn.btn-primary.font-weight-bolder.mb-2 type="button" href="#{new_admin_general_transaction_path}"
               i.la.la-plus
               | Tambah Transaksi
@@ -56,7 +89,7 @@
               - @journals.each do |journal|
                 tr 
                   td.text-center
-                    = journal.date.strftime("%d %b %Y")
+                    = journal.date.strftime("%d %b %Y") if journal.date.present?
                   td.text-center
                     = journal.number_evidence
                   td.text-center

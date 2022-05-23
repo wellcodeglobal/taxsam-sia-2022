@@ -27,8 +27,18 @@ Rails.application.routes.draw do
           as: :action_import
     end
     
-    resources :journals
     resources :general_transactions
+    resources :journals
+    namespace :journals do      
+      post 'actions/import',
+          to: 'actions#import',
+          as: :action_import
+          
+      get "actions/download_template", 
+          to: "actions#download_template", 
+          as: :download_template
+    end    
+    
     resources :reports
     namespace :reports do      
       post 'actions/import',
