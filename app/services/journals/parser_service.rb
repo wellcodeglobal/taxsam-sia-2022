@@ -49,21 +49,30 @@ module Journals
         raise
       end
 
-      @general_transaction = GeneralTransaction.new(
+      @general_transaction = GeneralTransaction.find_or_initialize_by(
         number_evidence: @row.no_evidence,
-        date: @row.date.to_date,
         company_id: @company_id
       )
+      @general_transaction.date = @row.date.to_date      
     end
 
     def parse_and_save
-      @general_transaction.general_transaction_lines.new(
+      general_transaction_line = @general_transaction.general_transaction_lines.find_by(
         code: @row.code,
-        debit_idr: @row.debit.to_money,
-        credit_idr: @row.credit.to_money,
         description: @row.description,
         company_id: @company_id
       )
+
+      if general_transaction_line.blank?
+        general_transaction_line = @general_transaction.general_transaction_lines.new(
+          code: @row.code,
+          description: @row.description,
+          company_id: @company_id
+        )
+      end
+
+      general_transaction_line.debit_idr = @row.debit.to_money
+      general_transaction_line.credit_idr = @row.credit.to_money
 
       @general_transaction.save!
     end
