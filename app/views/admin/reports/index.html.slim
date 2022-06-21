@@ -85,7 +85,12 @@
                   td.text-center
                     = report.shown ? 'Ditampilkan' : 'Tidak Ditampilkan'
                   td.text-center
-                    = link_to 'Lihat', admin_report_path(report)
+                    = link_to admin_report_path(report), class: "btn btn-sm btn-primary mr-2"
+                      i.la.la-eye.mr-1
+                      | Lihat
+                    = link_to admin_report_path(report), method: :delete, class: "btn btn-sm btn-danger mr-2", data: { confirm: 'Anda yakin ingin menghapus laporan ini?' }
+                      i.la.la-trash.mr-1
+                      | Hapus
                   
         .card-footer
           .m-auto
