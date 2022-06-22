@@ -12,4 +12,12 @@
 #
 class Account < ApplicationRecord
   belongs_to :company
+  include PgSearch::Model
+
+  pg_search_scope :search,
+                  against: %i[code name],
+                  using: {
+                    tsearch: { prefix: true, any_word: true, negation: true }
+                  }
+
 end

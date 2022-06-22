@@ -71,37 +71,7 @@
             = render "admin/accounts/add_account", new_account: @new_account
 
         .card-body
-          table.table 
-            thead
-              tr
-                th.text-center width="10%"
-                  | code
-                th width="20%"
-                  | name
-                th.text-center width="20%"
-                  | company
-                th.text-center width="10%"
-                  | Group
-                th.text-center width="20%"
-                  | Action
-
-            tbody
-              - @accounts.each do |account|
-                tr 
-                  td.text-center
-                    = account.code
-                  td
-                    = account.name
-                  td.text-center
-                    = account.company&.name
-                  td.text-center
-                    = account.group
-                  td.text-center
-                    = link_to edit_admin_account_path(id: account.id), class: "btn btn-warning btn-sm mr-2" do                  
-                      i.la.la-edit
-                    = link_to admin_account_path(account), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mr-2" do                  
-                      i.la.la-trash
-        .card-footer.row
-          .m-auto
-            = paginate @accounts
-
+          #kt_datatable.datatable.datatable-bordered.datatable-head-custom[
+            data-admin--accounts--index-data-path=api_admin_accounts_index_path
+            data-controller="admin--accounts--index"
+          ]

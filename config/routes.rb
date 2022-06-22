@@ -46,4 +46,15 @@ Rails.application.routes.draw do
           as: :action_import
     end
   end
+
+  namespace :api do
+    namespace :admin do
+      namespace :users do
+        post 'get-all', to: 'index#show', as: :index
+      end
+      namespace :accounts do
+        post 'get-all', to: 'index#show', as: :index
+      end
+    end
+  end  
 end
