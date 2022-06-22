@@ -3,6 +3,11 @@
 class AdminController < ActionController::Base
   include Clearance::Controller
   before_action :require_login
+  before_action :reports
+  
+  def reports
+    @reports = Report.all
+  end
 
   def current_company 
     @current_company ||= current_user.company

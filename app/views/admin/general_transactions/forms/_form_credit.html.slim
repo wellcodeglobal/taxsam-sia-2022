@@ -1,55 +1,58 @@
-hr
-h4
-  .fa.fa-list.mr-2
-  | Credit
-div[
-  data-controller='dynamic-input'
-  data-dynamic-input-insertion-adjacent-position='afterend'
-  data-dynamic-input-requesting-index="1"
-  class="form-group"
-]    
-  .js-item-container-for-rates[
-    data-target='dynamic-input.element'
-  ]
-    .form-group.row.pt-2
-      label.col-sm-2.col-form-label
-        | Kode Akun 
-      .col-sm-9
-        = select_tag 'general_transaction_line_credit[0][code]',
-          options_for_select(select_account_options, options[:code]),
-          include_blank: '== Pilih ==',
-          class: 'form-control selectize',
-          placeholder: 'Kode Akun',
-          required: true,
-          data: { target: 'dynamic-input.input', controller: "select2" }
-      .col-sm-1
-        button.btn.btn-danger type='button' data-action='click->dynamic-input#remove'
-          i.fas.fa-trash
+.card.card-custom.card-border.mb-5
+  .card-header
+    .card-title.position-relative
+      span.card-icon
+        i.flaticon-file-2.text-success
+      h3.card-label Credit
+  .card-body
+    div[
+      data-controller='dynamic-input'
+      data-dynamic-input-insertion-adjacent-position='afterend'
+      data-dynamic-input-requesting-index="1"
+      class="form-group"
+    ]    
+      .js-item-container-for-rates[
+        data-target='dynamic-input.element'
+      ]
+        .form-group.row.pt-2
+          label.col-sm-2.col-form-label
+            | Kode Akun 
+          .col-sm-9
+            = select_tag 'general_transaction_line_credit[0][code]',
+              options_for_select(select_account_options, options[:code]),
+              include_blank: '== Pilih ==',
+              class: 'form-control selectize',
+              placeholder: 'Kode Akun',
+              required: true,
+              data: { target: 'dynamic-input.input', controller: "select2" }
+          .col-sm-1
+            button.btn.btn-danger type='button' data-action='click->dynamic-input#remove'
+              i.fas.fa-trash
 
-    .form-group.row
-      label.col-sm-2.col-form-label
-        label.form-label
-          | Nominal Transaksi
-      .col-sm-9
-        .position-absolute.p-3 Rp.
-        = text_field_tag 'general_transaction_line_credit[0][credit_idr]', options[:price],
-          class: 'form-control pl-10 js-nominal',
-          required: true,
-          data: {\
-            target: 'dynamic-input.input',\
-            controller: "input-price"\
-          }
-          
-    .form-group.row
-      label.col-sm-2.col-form-label
-        | Deskripsi
-      .col-sm-9
-        = text_field_tag 'general_transaction_line_credit[0][description]', options[:description],
-          class: 'form-control',
-          required: true,
-          data: { target: 'dynamic-input.input' }
-    hr
-  .form-group.row.d-block.text-center.mt-2
-    button.btn.btn-success type='button' data-action='click->dynamic-input#add'
-      | Tambah Transaksi
-    
+        .form-group.row
+          label.col-sm-2.col-form-label
+            label.form-label
+              | Nominal Transaksi
+          .col-sm-9
+            .position-absolute.p-3 Rp.
+            = text_field_tag 'general_transaction_line_credit[0][credit_idr]', options[:price],
+              class: 'form-control pl-10 js-nominal',
+              required: true,
+              data: {\
+                target: 'dynamic-input.input',\
+                controller: "input-price"\
+              }
+              
+        .form-group.row
+          label.col-sm-2.col-form-label
+            | Deskripsi
+          .col-sm-9
+            = text_field_tag 'general_transaction_line_credit[0][description]', options[:description],
+              class: 'form-control',
+              required: true,
+              data: { target: 'dynamic-input.input' }
+        hr
+      .form-group.row.d-block.text-center.mt-2
+        button.btn.btn-success type='button' data-action='click->dynamic-input#add'
+          | Tambah Transaksi
+        
