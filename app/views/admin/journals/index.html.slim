@@ -69,36 +69,41 @@
               | Tambah Transaksi
 
         .card-body
-          table.table 
+          table.table.table-bordered
             thead
               tr
                 th.text-center width="10%"
                   | Tanggal
-                th.text-center width="10%"
+                th width="20%"
                   | Nomor Bukti
-                th.text-center width="20%"
+                th width="10%"
                   | Kode Akun
-                th.text-center width="20%"
+                th width="20%"
                   | Deskripsi
-                th.text-center width="20%"
+                th.text-left width="20%"
                   | Debit
-                th.text-center width="20%"
+                th.text-left width="20%"
                   | Credit
 
             tbody
+              - prev_number_evidence = ""
               - @journals.each do |journal|
+                - if journal.number_evidence != prev_number_evidence
+                  - prev_number_evidence = journal.number_evidence 
+                - else 
+                  - prev_number_evidence = ""
                 tr 
                   td.text-center
-                    = journal.date.strftime("%d %b %Y") if journal.date.present?
-                  td.text-center
-                    = journal.number_evidence
-                  td.text-center
+                    = journal.date.strftime("%d %b %Y") if journal.date.present? &&  prev_number_evidence.present?
+                  td
+                    = prev_number_evidence  if prev_number_evidence.present?
+                  td
                     = journal.code
-                  td.text-center
+                  td
                     = journal.description
-                  td.text-center
+                  td.text-left
                     = journal.debit_idr.format
-                  td.text-center
+                  td.text-left
                     = journal.credit_idr.format
         .card-footer
           .m-auto

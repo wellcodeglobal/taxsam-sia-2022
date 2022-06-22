@@ -49,7 +49,7 @@
                   | Aksi
 
             tbody
-              - @general_transactions.each_with_index do |general_transaction, index|
+              - @general_transactions.each_with_index do |general_transaction, index|              
                 tr 
                   td.text-center
                     = index + 1
@@ -59,9 +59,9 @@
                     = general_transaction.number_evidence                  
                   td.text-center
                     = link_to admin_general_transaction_path(id: general_transaction.id), class: "btn btn-icon btn-clean mr-2" do
-                      .la.la-eye
+                      .fa.fa-eye
                     = link_to admin_general_transaction_path(general_transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-clean btn-icon" do
-                      .la.la-trash.text-danger
+                      .fa.fa-trash.text-danger
         .card-footer
           .m-auto
             = paginate @general_transactions
