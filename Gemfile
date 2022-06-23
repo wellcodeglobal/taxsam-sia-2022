@@ -15,6 +15,7 @@ gem 'webpacker', '~> 5.0'
 
 gem 'pg'
 gem 'pg_search'
+gem 'rolify'
 gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'

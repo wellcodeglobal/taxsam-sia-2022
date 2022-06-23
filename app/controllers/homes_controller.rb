@@ -9,11 +9,15 @@ class HomesController < ApplicationController
   def reports
     @reports = Report.all
   end
-  
+
   def index; end
 
   def err_page
     sample_err_methods
+  end
+
+  def current_company 
+    @current_company ||= current_user.company
   end
 
   private
