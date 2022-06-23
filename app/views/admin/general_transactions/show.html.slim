@@ -18,12 +18,18 @@
 
             .card-body.pt-4
               .py-9
-                .d-flex.align-items-center.justify-content-between.mb-2
-                  span.font-weight-bold.mr-2 Nomor Bukti :
-                  a.text-muted.text-hover-primary = @general_transaction.number_evidence
-                .d-flex.align-items-center.justify-content-between.mb-2
-                  span.font-weight-bold.mr-2 Tanggal:
-                  a.text-muted.text-hover-primary = @general_transaction.date.strftime("%d/%m/%Y")
+                table
+                  tbody
+                    tr
+                      td width="40%"
+                        | Nomor Bukti :
+                      td.text-muted.text-hover-primary.text-right
+                        = @general_transaction.number_evidence
+                    tr
+                      td width="40%"
+                        | Tanggal :
+                      td.text-muted.text-hover-primary.text-right
+                        = @general_transaction.date.strftime("%d/%m/%Y")
                 
         .flex-row-fluid.ml-lg-8          
           .row

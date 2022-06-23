@@ -36,33 +36,7 @@
               | Tambah Transaksi
 
         .card-body
-          table.table 
-            thead
-              tr
-                th.text-center width="10%"
-                  | No
-                th width="10%"
-                  | Tanggal
-                th width="20%"
-                  | Nomor Bukti
-                th.text-center width="20%"
-                  | Aksi
-
-            tbody
-              - @general_transactions.each_with_index do |general_transaction, index|              
-                tr 
-                  td.text-center
-                    = index + 1
-                  td
-                    = general_transaction.date.strftime("%d %b %Y")
-                  td
-                    = general_transaction.number_evidence                  
-                  td.text-center
-                    = link_to admin_general_transaction_path(id: general_transaction.id), class: "btn btn-icon btn-clean mr-2" do
-                      .fa.fa-eye
-                    = link_to admin_general_transaction_path(general_transaction), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-clean btn-icon" do
-                      .fa.fa-trash.text-danger
-        .card-footer
-          .m-auto
-            = paginate @general_transactions
-
+          #kt_datatable.datatable.datatable-bordered.datatable-head-custom[
+            data-admin--general-transactions--index-data-path=api_admin_general_transactions_index_path
+            data-controller="admin--general-transactions--index"
+          ]

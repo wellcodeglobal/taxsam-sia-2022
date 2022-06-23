@@ -1,16 +1,15 @@
 table.table 
   thead
     tr
-      th width="10%"
-        | Nama
-      th.text-center width="10%"
-        | Value
+      th width="50%"
+      th.text-left width="40%"
+        | IDR
 
   tbody
     - @report_facede.table_reports.each do |table_report|
       tr style="#{ table_report[:styles] }"
-        td
+        td style="#{ table_report[:styles_row] }"
           = table_report[:name]
-        td.text-center
-          = table_report[:value]
+        td.text-left
+          = table_report[:value].to_money.format
         
