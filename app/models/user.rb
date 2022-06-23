@@ -14,6 +14,7 @@
 #  company_id         :uuid
 #
 class User < ApplicationRecord
+  rolify
   include Clearance::User
   has_one_attached :avatar
   belongs_to :company
