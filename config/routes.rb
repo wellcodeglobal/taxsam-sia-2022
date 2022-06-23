@@ -49,6 +49,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :admin do
+      namespace :general_transactions do
+        post 'get-all', to: 'index#show', as: :index
+      end
       namespace :users do
         post 'get-all', to: 'index#show', as: :index
       end

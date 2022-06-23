@@ -4,6 +4,12 @@ class HomesController < ApplicationController
   before_action :require_login
   
   layout 'homes'
+  before_action :reports
+  
+  def reports
+    @reports = Report.all
+  end
+  
   def index; end
 
   def err_page

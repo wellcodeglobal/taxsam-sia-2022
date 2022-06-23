@@ -34,7 +34,8 @@ module Admin
           {
             name: report_line.name,
             value: "",
-            styles: "background-color: antiquewhite;"
+            styles: "background-color: #e1e1e1;",
+            styles_row: ""
           }
         end
 
@@ -43,7 +44,8 @@ module Admin
           {
             name: report_line.name,
             value: value,
-            styles: ""
+            styles: "",
+            styles_row: "padding-left: 30px;"
           }
         end
 
@@ -52,7 +54,8 @@ module Admin
           {
             name: report_line.name,
             value: value,
-            styles: "background-color: gray;"
+            styles: "background-color: #e1e1e1;text-align: right;",
+            styles_row: ""
           }
         end      
 
