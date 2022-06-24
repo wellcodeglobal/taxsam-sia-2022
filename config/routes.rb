@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     
     resources :general_transactions
     resources :journals
-    namespace :journals do      
+    namespace :journals do        
+      post 'actions/export',
+          to: 'actions#export',
+          as: :action_export
+
       post 'actions/import',
           to: 'actions#import',
           as: :action_import

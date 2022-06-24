@@ -3,6 +3,15 @@
 module Admin
   module Journals
     class ActionsController < Admin::JournalsController
+      def export
+        @journals = Journal.where(date: date_range)
+        respond_to do |format|
+          format.xlsx {
+            response.headers['Content-Disposition'] = "attachment; filename=\"Journals.xlsx\""
+          }
+        end
+      end
+
       def import
         if !parser_service.run
           return redirect_to admin_journals_path, 
@@ -26,6 +35,13 @@ module Admin
           params[:file],
           current_user.company.id
         )
+      end
+
+      def date_range
+        if params[:start_date].present? && params[:end_date].present?
+          return (params[:start_date].to_date..params[:end_date].to_date)
+        end
+        return (Date.today.beginning_of_year..Date.today.end_of_month)
       end
 
     end

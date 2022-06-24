@@ -1,0 +1,23 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Journal") do |sheet|
+  sheet.add_row([
+    "Tanggal",
+    "Nomor Bukti",
+    "Kode Akun",
+    "Deskripsi",
+    "Debit",
+    "Credit"
+  ])
+  
+  @journals.each do |journal|  
+    sheet.add_row([
+      journal.date.strftime("%F"),
+      journal.number_evidence,
+      journal.code,
+      journal.description,
+      journal.debit_idr,
+      journal.credit_idr
+    ])
+  end
+end
