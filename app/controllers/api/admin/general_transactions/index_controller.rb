@@ -20,7 +20,7 @@ module Api
           return @general_transactions if @general_transactions.present?
 
           @general_transactions = GeneralTransaction
-            .where(company_id: current_company.id)
+            .where(company_id: current_company.id, date: date_range)
             .order(date: :desc)
 
           if sort.present?
@@ -72,7 +72,7 @@ module Api
             @data[i] = {
               index: i,
               id: general_transaction.id,
-              date: general_transaction.date,
+              date: general_transaction.date.strftime("%d %b %Y"),
               number_evidence: general_transaction.number_evidence,              
               show_path: admin_general_transaction_path(id: general_transaction.id),
               delete_path: admin_general_transaction_path(id: general_transaction.id)
@@ -88,6 +88,13 @@ module Api
           end
 
           ((page[:page].to_i - 1) * page[:perpage].to_i) + 1
+        end
+
+        def date_range
+          if params[:start_date].present? && params[:end_date].present?
+            return (params[:start_date].to_date..params[:end_date].to_date)
+          end
+          return (Date.today.beginning_of_year..Date.today.end_of_month)
         end
       end
     end

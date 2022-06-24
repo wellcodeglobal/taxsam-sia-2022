@@ -64,8 +64,8 @@
                     = form_with url: admin_journals_action_export_path(\
                         format: "xlsx",\
                       ), method: :post, local: true do |f|                        
-                        = f.text_field :start_date, class: "d-none", value: params[:start_date].to_date
-                        = f.text_field :end_date, class: "d-none", value: params[:end_date].to_date
+                        = f.text_field :start_date, class: "d-none", value: params[:start_date]
+                        = f.text_field :end_date, class: "d-none", value: params[:end_date]
                         button.nav-link.text-left[
                           style="border:none;background:none;"
                           type="submit"
