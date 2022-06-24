@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Laporan #{@report.name}") do |sheet|
+  sheet.add_row([
+    "",
+    "",
+    "IDR"
+  ])
+  
+  @report_facede.table_reports.each_with_index do |report_line, index|
+    sheet.add_row([
+      (index + 1),
+      report_line[:name],
+      report_line[:value]
+    ])
+  end
+end
