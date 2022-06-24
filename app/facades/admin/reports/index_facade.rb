@@ -5,7 +5,7 @@ module Admin
     class IndexFacade
       def initialize params
         @params = params
-        @table_reports = []   
+        @table_reports = []
         table_report_generator
       end
 
@@ -35,37 +35,46 @@ module Admin
             name: report_line.name,
             value: "",
             styles: "background-color: #e1e1e1;",
-            styles_row: ""
+            styles_row: "",
+            error_message: ""
           }
         end
 
         def add_component_report report_line                    
+          error_message = ""
+          value = 0
+
           begin
             value = eval(formula_component_parser(report_line))
-          rescue SyntaxError
-            value = "Error Syntax"
+          rescue SyntaxError => e            
+            error_message = "Formula Error: #{report_line.name} --> #{report_line.formula}"
           end
           
           {
             name: report_line.name,
             value: value,
             styles: "",
-            styles_row: "padding-left: 30px;"
+            styles_row: "padding-left: 30px;",
+            error_message: error_message
           }
         end
 
-        def add_accumulation_report report_line        
-          begin            
+        def add_accumulation_report report_line
+          error_message = ""
+          value = 0
+
+          begin
             value = eval(formula_accumulation_parser(report_line))
-          rescue SyntaxError
-            value = "Error Syntax"
+          rescue SyntaxError => e            
+            error_message = "Formula Error: #{report_line.name} --> #{report_line.formula}"
           end
 
           {
             name: report_line.name,
             value: value,
             styles: "background-color: #e1e1e1;text-align: right;",
-            styles_row: ""
+            styles_row: "",
+            error_message: error_message
           }
         end      
 

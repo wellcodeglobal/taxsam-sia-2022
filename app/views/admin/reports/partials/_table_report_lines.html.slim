@@ -7,6 +7,12 @@ table.table
 
   tbody
     - @report_facede.table_reports.each do |table_report|
+      - if table_report[:error_message].present?        
+        .alert.alert-danger.alert-dismissible.fade.show role="alert" 
+          button.close aria-label="Close" data-dismiss="alert" type="button" 
+            span aria-hidden="true"  &times;
+          = table_report[:error_message]
+
       tr style="#{ table_report[:styles] }"
         td style="#{ table_report[:styles_row] }"
           = table_report[:name]
