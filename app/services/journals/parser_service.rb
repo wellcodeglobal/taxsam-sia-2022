@@ -3,21 +3,20 @@
 module Journals
   class ParserService < Journals::BaseService
     FIELD_MAP = {
-      :date => 0,
-      :no_evidence => 1,
-      :description => 2,
-      :code => 3,
-      :name => 4,
-      :company_name => 5,
-      :debit => 6,
-      :credit => 7
+      :date => 7,
+      :no_evidence => 8,
+      :description => 9,
+      :code => 10,
+      :name => 11,
+      :company_name => 12,
+      :debit => 13,
+      :credit => 14
     }
     
     def action
-      @saved_transaction = []
-      sheet.each_with_index do |row, i|        
-        next if i < 2
-
+      @saved_transaction = []      
+      sheet.each_with_index do |row, i|                
+        next if i < 8
         @raw_row = { index: i,row: row }        
         @row = OpenStruct.new(
           FIELD_MAP.map {|key,val| [key, row[val]]}.to_h
@@ -33,6 +32,10 @@ module Journals
 
         @saved_transaction << @general_transaction
       end
+    end
+
+    def sheet
+      @sheet ||= xlsx.sheet("Jurnal Umum")
     end
 
     def is_row_valid?
