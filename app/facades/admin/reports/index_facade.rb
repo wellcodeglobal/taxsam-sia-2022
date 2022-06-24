@@ -40,7 +40,12 @@ module Admin
         end
 
         def add_component_report report_line                    
-          value = eval(formula_component_parser(report_line))
+          begin
+            value = eval(formula_component_parser(report_line))
+          rescue SyntaxError
+            value = "Error Syntax"
+          end
+          
           {
             name: report_line.name,
             value: value,
@@ -49,8 +54,13 @@ module Admin
           }
         end
 
-        def add_accumulation_report report_line                    
-          value = eval(formula_accumulation_parser(report_line))          
+        def add_accumulation_report report_line        
+          begin            
+            value = eval(formula_accumulation_parser(report_line))
+          rescue SyntaxError
+            value = "Error Syntax"
+          end
+
           {
             name: report_line.name,
             value: value,
