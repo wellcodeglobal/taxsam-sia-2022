@@ -5,6 +5,8 @@ module Admin
     class IndexFacade
       def initialize params
         @params = params
+        @start_date = params[:start_date]&.to_date || Date.today.beginning_of_year
+        @end_date = params[:end_date]&.to_date || Date.today        
         @table_reports = []
         table_report_generator
       end
@@ -115,7 +117,7 @@ module Admin
         end
 
         def get_journal_lines codes
-          Journal.where(code: codes)
+          Journal.where(code: codes, date: @start_date..@end_date)
         end
     end
   end
