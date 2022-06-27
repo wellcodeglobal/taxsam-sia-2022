@@ -36,11 +36,14 @@
     .container-fluid
       .card.card-custom
         .card-header
-          .card-title
-            span.card-icon
-              i.flaticon2-favourite.text-primary
-            h3.card-label
-              | Laporan #{@report_facede.report.name}
+          .card-title.align-items-start.flex-column
+            .font-weight-bolder.text-dark.mt-2
+              span.card-icon
+                .fa.fa-book.text-primary.mr-2
+                | #{@report_facede.report.name} 
+            .text-muted.mt-3.font-weight-bold.font-size-sm              
+              .mr-2 
+                | (#{@start_date.strftime("%d %B %Y")} - #{@end_date.strftime("%d %B %Y")})
           .card-toolbar          
             .dropdown.dropdown-inline.mr-2.mb-2
               button.btn.btn-light-primary.font-weight-bolder.dropdown-toggle[
