@@ -86,8 +86,8 @@ module Admin
           credit_sum_idr = journal_lines.sum(&:credit_idr)
 
           formula = report_line.formula
-            .gsub("${debit}", "#{debit_sum_idr.to_i}")
-            .gsub("${credit}", "#{credit_sum_idr.to_i}")
+            .gsub(/\$\{debit\}/i, "#{debit_sum_idr.to_i}")
+            .gsub(/\$\{credit\}/i, "#{credit_sum_idr.to_i}")
 
           return formula
         end
