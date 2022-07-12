@@ -92,12 +92,16 @@ module Admin
           return formula
         end
 
+        def get_journal_lines codes
+          Journal.where(code: codes, date: @start_date..@end_date)
+        end
+
         def formula_accumulation_parser report_line
           values_formula = {}
           enum_formula = report_line.formula.gsub(/\${.*?}/)
           enum_formula.each do |formula_key|          
             values_formula[formula_key] = get_values_formula(formula_key)
-          end
+          end          
 
           formula = report_line.formula
           values_formula.each do |key, value|
@@ -112,12 +116,8 @@ module Admin
           filtered_formula_keys = @table_reports.select do |table_report| 
             table_report[:name] == filtered_formula_key
           end.uniq
-
+          
           return filtered_formula_keys.sum {|table_report| table_report[:value].to_money}
-        end
-
-        def get_journal_lines codes
-          Journal.where(code: codes, date: @start_date..@end_date)
         end
     end
   end
