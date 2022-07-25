@@ -23,6 +23,19 @@ module Admin
         end
       end
 
+      def export_pdf
+        @report = Report.find_by(id: params[:id])
+        return redirect_to admin_reports_path, alert: 'Laporan tidak ditemukan.' if @report.blank?        
+        @report_facede = Admin::Reports::IndexFacade.new(params)        
+        respond_to do |format|
+          format.pdf {
+            render pdf: "Laporan #{@report.name}",
+              template: 'admin/reports/actions/export_pdf.html.slim',
+              layout: 'pdf'          
+          }
+        end
+      end
+
       private
       def parser_service        
         @parser_service ||= ::Reports::ParserService.new(

@@ -1,0 +1,23 @@
+- url = wicked_pdf_asset_base64("logo_only.png")
+
+h4 style="text-align: center;"
+  = @report.name
+
+h4 style="text-align: center;"
+  | Tanggal : #{@report_facede.start_date.strftime("%d %B %Y")} - #{@report_facede.end_date.strftime("%d %B %Y")}
+
+table.table
+  thead
+    tr
+      th width="80%"
+      th style="text-align: left;" width="20%"
+        | IDR
+
+  tbody
+    - @report_facede.table_reports.each do |table_report|
+      tr style="#{ table_report[:styles] }"
+        td style="#{ table_report[:styles_row] }"
+          = table_report[:name]
+        td style="text-align: left;"
+          = table_report[:value].to_money.format
+        

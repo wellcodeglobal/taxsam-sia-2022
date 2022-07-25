@@ -1,0 +1,50 @@
+@import "bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "arial-ms";
+  src: url("<%= asset_data_uri('arial-ms.otf') %>")
+}
+
+body {
+  background-color: white;
+}
+
+td {
+  padding: 6px;
+  padding-right: 10px;
+  padding-left: 10px;
+  vertical-align: top;
+}
+
+p {
+  line-height: 130%;
+  text-align: justify;
+  margin-top: 4pt;
+  margin-bottom: 4pt;
+  font-size: 18px;
+  font-family: 'arial-ms';
+}
+
+.table-bordered {
+  border: 1px solid black;
+
+  th,
+  td {
+    border: 1px solid black;
+  }
+}
+
+.border-black {
+  border: 1px solid black;
+}
+
+.dotted {
+  border: dotted 3px #000000;
+}
+
+.solid-border {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}

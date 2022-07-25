@@ -45,6 +45,10 @@ Rails.application.routes.draw do
     
     resources :reports
     namespace :reports do      
+      post 'actions/export_pdf',
+          to: 'actions#export_pdf',
+          as: :action_export_pdf
+
       post 'actions/export',
           to: 'actions#export',
           as: :action_export

@@ -41,6 +41,9 @@ gem 'roo-google'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   gem 'break'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

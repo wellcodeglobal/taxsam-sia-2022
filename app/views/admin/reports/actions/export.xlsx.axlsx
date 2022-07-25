@@ -1,6 +1,20 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Laporan #{@report.name}") do |sheet|
+wb.add_worksheet(name: "Laporan #{@report.name}") do |sheet|  
+  sheet.add_row([
+    "",
+    "Laporan #{@report.name}",
+    ""
+  ])
+
+  sheet.add_row(["","",""])
+  sheet.add_row([
+    "",
+    "Tanggal #{@report_facede.start_date} s/d #{@report_facede.end_date}",
+    ""
+  ])
+  sheet.add_row(["","",""])
+
   sheet.add_row([
     "",
     "",

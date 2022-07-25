@@ -15,6 +15,14 @@ module Admin
         @table_reports
       end
 
+      def start_date
+        @start_date
+      end
+
+      def end_date
+        @end_date
+      end
+
       def report
         @report ||= Report.find(@params[:id])
       end
