@@ -4,7 +4,7 @@ module Admin
   module Journals
     class ActionsController < Admin::JournalsController
       def export
-        @journals = Journal.where(date: date_range)
+        @journals = Journal.where(date: date_range, company: current_company)
         respond_to do |format|
           format.xlsx {
             response.headers['Content-Disposition'] = "attachment; filename=\"Journals.xlsx\""
@@ -33,7 +33,7 @@ module Admin
       def parser_service        
         @parser_service ||= ::Journals::ParserService.new(
           params[:file],
-          current_user.company.id
+          current_company.id
         )
       end
 

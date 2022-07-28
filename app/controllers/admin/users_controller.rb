@@ -2,7 +2,15 @@ class Admin::UsersController < AdminController
   before_action :user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.order(:email).page(params[:page]).per(10)
+    @total_users = User
+      .where(company: current_company)
+      .count
+      
+    @users = User
+      .where(company: current_company)
+      .order(:email)
+      .page(params[:page])
+      .per(10)
   end
 
   def show

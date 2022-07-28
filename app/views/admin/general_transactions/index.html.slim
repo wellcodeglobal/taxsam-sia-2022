@@ -43,7 +43,7 @@
               | List Transaksi
               br
               span.font-size-sm.text-dark-50.font-weight-bold
-                | Total #{GeneralTransaction.count} transaksi
+                | Total #{@total_general_transactions} transaksi
 
           .card-toolbar.justify-content-end
             a.btn.btn-primary.font-weight-bolder.mb-2 type="button" href="#{new_admin_general_transaction_path}"

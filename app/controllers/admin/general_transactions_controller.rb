@@ -2,7 +2,8 @@ class Admin::GeneralTransactionsController < AdminController
   before_action :general_transaction, only: [:show, :update, :destroy]
 
   def index
-    @general_transactions = GeneralTransaction.all
+    @total_general_transactions = GeneralTransaction.where(company: current_company).count
+    @general_transactions = GeneralTransaction.where(company: current_company)
       .order(date: :desc)
       .page(params[:page])
       .per(10)

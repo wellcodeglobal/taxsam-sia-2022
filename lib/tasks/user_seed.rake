@@ -11,16 +11,23 @@ namespace :user do
     )
     company.save!
 
-    user = User.find_or_initialize_by(email: "admin@wellcode.io")
-    user.password = "password"
-    user.company = company
-
-    user.save!
-
     user = User.find_or_initialize_by(email: "admin@taxsam.co")
     user.password = "password"
     user.company = company
-
     user.save
+
+
+    company = Company.find_or_initialize_by(
+      name: "Wellcode",
+      codename: 'WG',
+      slug: "wellcode",
+      address: "Sudirman Park"
+    )
+    company.save!
+
+    user = User.find_or_initialize_by(email: "admin@wellcode.io")
+    user.password = "password"
+    user.company = company
+    user.save!
   end
 end

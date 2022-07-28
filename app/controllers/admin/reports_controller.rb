@@ -1,6 +1,13 @@
 class Admin::ReportsController < AdminController
   def index
-    @reports = Report.all.page(params[:page]).per(10)
+    @total_reports = Report
+      .where(company: current_company)
+      .count
+      
+    @reports = Report
+      .where(company: current_company)
+      .page(params[:page])
+      .per(10)
   end
 
   def show    

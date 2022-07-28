@@ -3,7 +3,12 @@ class Admin::AccountsController < AdminController
 
   def index
     @new_account = Account.new
-    @accounts = Account.all.order(code: :asc).page(params[:page]).per(10) 
+    @total_account = Account.where(company: current_company).count
+    @accounts = Account
+      .where(company: current_company)
+      .order(code: :asc)
+      .page(params[:page])
+      .per(10) 
   end
 
   def create

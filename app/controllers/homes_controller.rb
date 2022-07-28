@@ -7,7 +7,7 @@ class HomesController < ApplicationController
   before_action :reports
   
   def reports
-    @reports = Report.all
+    @reports = Report.where(company: current_company)
   end
 
   def index; end

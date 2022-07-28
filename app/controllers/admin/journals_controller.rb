@@ -1,6 +1,13 @@
 class Admin::JournalsController < AdminController
   def index
-    @journals = Journal.where(date: date_range).page(params[:page]).per(10)
+    @total_journals = Journal
+      .where(company: current_company, date: date_range)
+      .count
+
+    @journals = Journal
+      .where(company: current_company, date: date_range)
+      .page(params[:page])
+      .per(10)
   end 
   
   private

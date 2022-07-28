@@ -20,6 +20,7 @@ module Api
           return @users if @users.present?
 
           @users = User
+            .where(company: current_company)
             .order(created_at: :desc)
 
           if sort.present?
