@@ -28,5 +28,5 @@
         data: { controller: 'select2' }
 
 .modal-footer
-  a.btn.btn-light-primary.font-weight-bold href="#{admin_accounts_path}" data-dismiss="modal" type="button"  Batal
+  a.btn.btn-light-primary.font-weight-bold href="#{admin_accounts_path(slug: current_company.slug)}" data-dismiss="modal" type="button"  Batal
   = f.submit "Simpan", class: "btn btn-primary"

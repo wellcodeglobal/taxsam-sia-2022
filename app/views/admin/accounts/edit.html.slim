@@ -14,5 +14,5 @@
         .card-body.pt-0
           .tab-content.pt-0
             .tab-pane.active
-              = form_with model: @account, url: admin_account_path(@account), method: :put do |f|
+              = form_with model: @account, url: admin_account_path(id: @account.id, slug: current_company.slug), method: :put do |f|
                 = render partial: 'form', locals: {f:f, account: @account}

@@ -34,4 +34,4 @@
       .elementor-element.elementor-element-1cc81637.elementor-widget.elementor-widget-heading[data-id="1cc81637" data-element_type="widget" data-widget_type="heading.default"]
         .elementor-widget-container
           / h2.elementor-heading-title.elementor-size-default
-            = link_to 'Forget Password?', new_password_path(), id: 'kt_login_forgot'
+            = link_to 'Forget Password?', new_password_path(slug: current_company.slug), id: 'kt_login_forgot'

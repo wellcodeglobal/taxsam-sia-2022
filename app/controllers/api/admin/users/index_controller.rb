@@ -75,9 +75,9 @@ module Api
               email: user.email,
               company_name: user.company.name,
               role_name: user.roles.pluck(:name).to_sentence,
-              show_path: admin_user_path(id: user.id),
-              edit_partial_path: edit_admin_user_path(id: user.id),
-              delete_path: admin_user_path(id: user.id)              
+              show_path: admin_user_path(id: user.id, slug: current_company.slug),
+              edit_partial_path: edit_admin_user_path(id: user.id, slug: current_company.slug),
+              delete_path: admin_user_path(id: user.id, slug: current_company.slug)              
             }
           end
 

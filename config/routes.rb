@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     root to: "homes#index"
   end
 
-  namespace :admin do
+  namespace :admin, path: ":slug" do
     resources :users
     resources :accounts    
     namespace :accounts do      

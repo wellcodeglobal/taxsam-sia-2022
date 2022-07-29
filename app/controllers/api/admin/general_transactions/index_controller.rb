@@ -74,8 +74,8 @@ module Api
               id: general_transaction.id,
               date: general_transaction.date.strftime("%d %b %Y"),
               number_evidence: general_transaction.number_evidence,              
-              show_path: admin_general_transaction_path(id: general_transaction.id),
-              delete_path: admin_general_transaction_path(id: general_transaction.id)
+              show_path: admin_general_transaction_path(id: general_transaction.id, slug: current_company.slug),
+              delete_path: admin_general_transaction_path(id: general_transaction.id, slug: current_company.slug)
             }
           end
 

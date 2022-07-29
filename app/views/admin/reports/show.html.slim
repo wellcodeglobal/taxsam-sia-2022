@@ -61,6 +61,7 @@
 
                   li.nav-item
                     = form_with url: admin_reports_action_export_path(\
+                        slug: current_company.slug,\
                         format: "xlsx",\
                       ), method: :post, local: true do |f|                        
                         = f.text_field :id, class: "d-none", value: params[:id]
@@ -77,6 +78,7 @@
 
                   li.nav-item
                     = form_with url: admin_reports_action_export_pdf_path(\
+                        slug: current_company.slug,\
                         format: "pdf",\
                       ), method: :post, local: true do |f|
                         = f.text_field :id, class: "d-none", value: params[:id]

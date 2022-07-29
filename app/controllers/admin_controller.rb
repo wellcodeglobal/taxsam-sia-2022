@@ -24,4 +24,8 @@ class AdminController < ActionController::Base
       payload[:level] = "ERROR"
     end
   end
+
+  def default_url_options
+    { slug: current_company.slug }
+  end
 end

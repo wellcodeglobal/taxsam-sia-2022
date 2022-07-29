@@ -45,13 +45,13 @@
                   li.nav-header.font-weight-bolder.text-uppercase.text-primary.pb-2.px-4
                     | Pilih:
                   li.nav-item
-                    a.nav-link href="#{admin_accounts_download_template_path}" target="_blank"
+                    a.nav-link href="#{admin_accounts_download_template_path(slug: current_company.slug)}" target="_blank"
                       i.nav-icon.la.la-file-excel-o
                       span.nav-text.ml-2 Download Template Import
 
                   li.nav-item
                     = form_with method: :post,
-                      url: admin_accounts_action_import_path,
+                      url: admin_accounts_action_import_path(slug: current_company.slug),
                       multipart: true,
                       data: {controller: 'forms--autouploader-single-file'} do
                       label.nav-link.cursor-pointer
@@ -72,6 +72,6 @@
 
         .card-body
           #kt_datatable.datatable.datatable-bordered.datatable-head-custom[
-            data-admin--accounts--index-data-path=api_admin_accounts_index_path
+            data-admin--accounts--index-data-path=api_admin_accounts_index_path(slug: current_company.slug)
             data-controller="admin--accounts--index"
           ]

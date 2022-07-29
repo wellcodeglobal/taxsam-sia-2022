@@ -31,7 +31,7 @@
         .card-body.pt-0
           .tab-content.pt-0
             #incomes.tab-pane class="#{'active' if params[:tab].blank?}"
-              = form_for :transaction, url: admin_general_transactions_path, method: :post do |form|
+              = form_for :transaction, url: admin_general_transactions_path(slug: current_company.slug), method: :post do |form|
                 = render 'admin/general_transactions/forms/form_transaction', f: form
 
             / #assets.tab-pane class="#{'active' if params[:tab] == 'assets'}"

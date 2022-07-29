@@ -62,6 +62,7 @@
 
                   li.nav-item
                     = form_with url: admin_journals_action_export_path(\
+                        slug: current_company.slug,\
                         format: "xlsx",\
                       ), method: :post, local: true do |f|                        
                         = f.text_field :start_date, class: "d-none", value: params[:start_date]
@@ -77,7 +78,7 @@
 
                   li.nav-item
                     = form_with method: :post,
-                      url: admin_journals_action_import_path,
+                      url: admin_journals_action_import_path(slug: current_company.slug),
                       multipart: true,
                       data: {controller: 'forms--autouploader-single-file'} do
                       label.nav-link.cursor-pointer

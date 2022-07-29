@@ -39,7 +39,7 @@
 
         .card-body
           #kt_datatable.datatable.datatable-bordered.datatable-head-custom[
-            data-admin--users--index-data-path=api_admin_users_index_path
+            data-admin--users--index-data-path=api_admin_users_index_path(slug: current_company.slug)
             data-controller="admin--users--index"
           ]
         /   table.table 

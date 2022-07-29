@@ -76,8 +76,8 @@ module Api
               name: account.name,
               company_name: account.company.name,
               group: account.group,
-              edit_partial_path: edit_admin_account_path(id: account.id),
-              delete_path: admin_account_path(id: account.id)              
+              edit_partial_path: edit_admin_account_path(id: account.id,slug: current_company.slug),
+              delete_path: admin_account_path(id: account.id, slug: current_company.slug)              
             }
           end
 
