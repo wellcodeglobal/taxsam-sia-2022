@@ -7,7 +7,7 @@
   ] 
   .modal-dialog.modal-dialog-centered.modal-lg role="document" 
     .modal-content
-      = form_with model: new_account, url: admin_accounts_path, method: :post do |f|   
+      = form_with model: new_account, url: admin_accounts_path(slug: current_company.slug), method: :post do |f|   
         .modal-header
           h5#exampleModalLabel.modal-title Tambah Akun
           button.close aria-label="Close" data-dismiss="modal" type="button" 
