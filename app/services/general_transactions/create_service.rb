@@ -5,6 +5,7 @@ module GeneralTransactions
       new_transaction.company_id = @company_id      
 
       general_transaction_lines_params.each do |general_transaction_line|
+        next if general_transaction_line["code"].blank?
         transaction_line = new_transaction
           .general_transaction_lines
           .new(general_transaction_line)

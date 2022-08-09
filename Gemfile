@@ -43,6 +43,7 @@ gem 'caxlsx_rails'
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem "audited", "~> 5.0"
 
 group :development, :test do
   gem 'break'

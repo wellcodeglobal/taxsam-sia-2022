@@ -12,4 +12,15 @@
 class GeneralTransaction < ApplicationRecord
   belongs_to :company
   has_many :general_transaction_lines, dependent: :destroy
+  validate :closed_book
+  
+  def closed_book
+    closed_journals = ClosedJournal.where("date >= ?", self.date)
+    if closed_journals.present?
+      self.errors.add :base, "Jurnal sudah ditutup"
+      return false      
+    end
+
+    return true
+  end
 end

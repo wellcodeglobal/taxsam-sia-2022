@@ -74,7 +74,7 @@ Rails.application.routes.draw do
     resources :settings, only: [:index]
     namespace :settings do
       resources :company_profiles, only: [:index, :create]
-      resources :closed_journals, only: [:index, :create]
+      resources :closed_journals, only: [:index, :create, :destroy]
     end
   end
 

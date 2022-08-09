@@ -33,6 +33,12 @@ class Admin::GeneralTransactionsController < AdminController
   end
 
   def destroy
+    closed_journals = ClosedJournal.where("date >= ?", general_transaction.date)
+    if closed_journals
+      return redirect_to admin_general_transactions_path, 
+        alert: "Transaksi sudah di tutup di Tutup Buku dan tidak dapat hapus atau di edit."
+    end
+
     if general_transaction.destroy
       return redirect_to admin_general_transactions_path, 
         notice: "General Transaction deleted"

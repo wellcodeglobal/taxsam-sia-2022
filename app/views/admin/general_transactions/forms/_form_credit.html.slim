@@ -23,7 +23,6 @@
               include_blank: '== Pilih ==',
               class: 'form-control selectize',
               placeholder: 'Kode Akun',
-              required: true,
               data: { target: 'dynamic-input.input', controller: "select2" }
           .col-sm-1
             button.btn.btn-danger type='button' data-action='click->dynamic-input#remove'
@@ -37,7 +36,6 @@
             .position-absolute.p-3 Rp.
             = text_field_tag 'general_transaction_line_credit[0][credit_idr]', options[:price],
               class: 'form-control pl-10 js-nominal',
-              required: true,
               data: {\
                 target: 'dynamic-input.input',\
                 controller: "input-price"\
@@ -49,7 +47,6 @@
           .col-sm-9
             = text_field_tag 'general_transaction_line_credit[0][description]', options[:description],
               class: 'form-control',
-              required: true,
               data: { target: 'dynamic-input.input' }
         hr
       .form-group.row.d-block.text-center.mt-2
