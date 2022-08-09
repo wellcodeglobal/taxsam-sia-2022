@@ -47,19 +47,23 @@
                       span.nav-text.ml-2 Download Template Import
 
                   li.nav-item
-                    = form_with method: :post,
-                      url: admin_reports_action_import_path(slug: current_company.slug),
-                      multipart: true,
-                      data: {controller: 'forms--autouploader-single-file'} do
-                      label.nav-link.cursor-pointer
-                        input[
-                          name="file"
-                          style="position:absolute;top:0;left:0;opacity:0;visibility:hidden;"
-                          type="file"
-                          data-target="forms--autouploader-single-file.file"
-                        ]
-                        i.nav-icon.la.la-file-excel-o
-                        span.nav-text.ml-2 Import Data Akun Excel
+                    = link_to admin_reports_action_import_path(slug: current_company.slug),\
+                      method: :get, class: "nav-link" do
+                      i.nav-icon.la.la-upload
+                      span.nav-text.ml-2 Import Laporan
+                    / = form_with method: :post,
+                    /   url: admin_reports_action_import_path(slug: current_company.slug),
+                    /   multipart: true,
+                    /   data: {controller: 'forms--autouploader-single-file'} do
+                    /   label.nav-link.cursor-pointer
+                    /     input[
+                    /       name="file"
+                    /       style="position:absolute;top:0;left:0;opacity:0;visibility:hidden;"
+                    /       type="file"
+                    /       data-target="forms--autouploader-single-file.file"
+                    /     ]
+                    /     i.nav-icon.la.la-file-excel-o
+                    /     span.nav-text.ml-2 Import Data Akun Excel
             
 
         .card-body

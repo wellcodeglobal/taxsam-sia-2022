@@ -40,11 +40,15 @@ Rails.application.routes.draw do
           
       get "actions/download_template", 
           to: "actions#download_template", 
-          as: :download_template
+          as: :download_template      
     end    
     
     resources :reports
-    namespace :reports do      
+    namespace :reports do    
+      get "actions/download_template", 
+        to: "actions#download_template", 
+        as: :download_template
+            
       post 'actions/export_pdf',
           to: 'actions#export_pdf',
           as: :action_export_pdf
@@ -56,6 +60,14 @@ Rails.application.routes.draw do
       post 'actions/import',
           to: 'actions#import',
           as: :action_import
+
+      get "actions/import",
+          to: "actions#import_form",
+          as: :import
+
+      get "actions/import_preview",
+          to: "actions#import_preview",
+          as: :import_preview
     end
   end
 

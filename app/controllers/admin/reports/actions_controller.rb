@@ -3,13 +3,38 @@
 module Admin
   module Reports
     class ActionsController < Admin::ReportsController
+      
+      def import_form
+      end
+
+      def import_preview
+        return render partial: "admin/reports/partials/table_report_lines", 
+          locals: { report_facede: report_facede }
+      end
+
       def import
-        if !parser_service.run
+        if params[:import][:file].present? && !parser_service.run
           return redirect_to admin_reports_path, 
             alert: parser_service.error_messages.join('<br/>')
         end
 
         redirect_to admin_reports_path, notice: 'File Berhasil di import'
+      end
+
+      def download_template
+        if params[:sample].present?
+          send_file(
+            "#{Rails.root}/public/sample_import_report.xlsx",
+            filename: 'sample_import_report.xlsx',
+            type: 'application/xlsx'
+          )          
+        else
+          send_file(
+            "#{Rails.root}/public/template_report.xlsx",
+            filename: 'template_report.xlsx',
+            type: 'application/xlsx'
+          )
+        end
       end
 
       def export
@@ -37,13 +62,29 @@ module Admin
       end
 
       private
-      def parser_service        
+      def parser_service
+        @file_blob = ActiveStorage::Blob.find_signed(params[:import][:file].first, purpose: :blob_id)
+        @file = url_for(@file_blob)
         @parser_service ||= ::Reports::ParserService.new(
-          params[:file],
+          @file,
           current_user.company.id
         )
       end
 
+      def preview_parser_service        
+        @file_blob = ActiveStorage::Blob.find_signed(params[:id], purpose: :blob_id)
+        @file = url_for(@file_blob)
+        @preview_parser_service = ::Reports::ParserPreviewService.new(
+          @file,
+          current_user.company.id
+        )
+      end
+
+      def report_facede
+        preview_parser_service.run
+        @report = @preview_parser_service.report
+        @report_facede = ::Admin::Reports::PreviewFacade.new(@report)
+      end
     end
   end
 end
