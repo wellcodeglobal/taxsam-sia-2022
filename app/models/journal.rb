@@ -18,6 +18,7 @@
 #  number_evidence     :string
 #
 class Journal < ApplicationRecord
+  include Journals::Helpers
   belongs_to :company
   belongs_to :journalable, polymorphic: true
 

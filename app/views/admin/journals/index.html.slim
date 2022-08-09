@@ -101,17 +101,16 @@
               tr
                 th.text-center width="10%"
                   | Tanggal
-                th width="20%"
-                  | Nomor Bukti
-                th width="10%"
+                th width="9%"
                   | Kode Akun
                 th width="20%"
-                  | Deskripsi
-                th.text-left width="20%"
+                  | Invoice
+                th width="25%"
+                  | Nama Akun                  
+                th.text-left width="10%"
                   | Debit
-                th.text-left width="20%"
+                th.text-left width="10%"
                   | Credit
-
             tbody
               - prev_number_evidence = ""
               - @journals.each do |journal|
@@ -121,17 +120,19 @@
                   - prev_number_evidence = ""
                 tr 
                   td.text-center
-                    = journal.date.strftime("%d %b %Y") if journal.date.present? &&  prev_number_evidence.present?
-                  td
-                    = prev_number_evidence  if prev_number_evidence.present?
+                    = journal.date.strftime("%d/%m/%y") if journal.date.present? &&  prev_number_evidence.present?
                   td
                     = journal.code
                   td
-                    = journal.description
-                  td.text-left
-                    = journal.debit_idr.format
-                  td.text-left
-                    = journal.credit_idr.format
+                    = prev_number_evidence  if prev_number_evidence.present?
+                  td class="#{ journal.debit_idr.to_i > 0 ? 'text-left' : 'text-right' }"
+                    = journal.account_name
+                    br
+                    = "(#{journal.description})"
+                  td.text-center
+                    = journal.debit_idr.format if journal.debit_idr.to_i > 0
+                  td.text-center
+                    = journal.credit_idr.format if journal.credit_idr.to_i > 0
         .card-footer.row
           .m-auto
             = paginate @journals
