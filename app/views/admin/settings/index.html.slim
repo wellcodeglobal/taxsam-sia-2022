@@ -1,0 +1,26 @@
+#kt_content.content.d-flex.flex-column.flex-column-fluid
+  #kt_subheader.subheader.py-2.py-lg-4.subheader-solid
+    .container-fluid.d-flex.align-items-center.justify-content-between.flex-wrap.flex-sm-nowrap
+      .d-flex.align-items-center.flex-wrap.mr-2
+        h5.text-dark.font-weight-bold.mt-2.mb-2.mr-2 Settings
+  
+  .d-flex.flex-column-fluid
+    .container-fluid
+      .card.card-custom
+        .card-body
+          .container
+            .row
+              .col-3
+                = link_to admin_settings_company_profiles_path(slug: current_company.slug) do
+                  .card.card-custom
+                    .card-body.text-center.border
+                      .fas.fa-building style="font-size:50px;color: #af3e05;"
+                      .text-primary.font-size-lg.font-weight-bold.mt-2
+                        | Edit Profile
+              .col-3
+                = link_to admin_settings_closed_journals_path(slug: current_company.slug) do
+                  .card.card-custom
+                    .card-body.text-center.border
+                      .fas.fa-book style="font-size:50px;color: #af3e05;"
+                      .text-primary.font-size-lg.font-weight-bold.mt-2
+                        | Tutup Buku

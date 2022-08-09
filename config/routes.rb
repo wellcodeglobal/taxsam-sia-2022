@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin, path: ":slug" do
-    resources :users
+    resources :users    
+    resources :general_transactions
+
     resources :accounts    
     namespace :accounts do      
       get "actions/download_template", 
@@ -27,7 +29,6 @@ Rails.application.routes.draw do
           as: :action_import
     end
     
-    resources :general_transactions
     resources :journals
     namespace :journals do        
       post 'actions/export',
@@ -68,6 +69,12 @@ Rails.application.routes.draw do
       get "actions/import_preview",
           to: "actions#import_preview",
           as: :import_preview
+    end
+
+    resources :settings, only: [:index]
+    namespace :settings do
+      resources :company_profiles, only: [:index, :create]
+      resources :closed_journals, only: [:index, :create]
     end
   end
 

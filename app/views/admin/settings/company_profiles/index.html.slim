@@ -1,0 +1,43 @@
+#kt_content.content.d-flex.flex-column.flex-column-fluid
+  #kt_subheader.subheader.py-2.py-lg-4.subheader-solid
+    .container-fluid.d-flex.align-items-center.justify-content-between.flex-wrap.flex-sm-nowrap
+      .d-flex.align-items-center.flex-wrap.mr-2
+        h5.text-dark.font-weight-bold.mt-2.mb-2.mr-2 Setting Profile
+  
+  .d-flex.flex-column-fluid
+    .container-fluid
+      = form_with model: @current_company, url: admin_settings_company_profiles_path(id: @current_company.id, slug: current_company.slug), method: :post do |f|              
+        .card.card-custom
+          .card-body
+            .container
+              #kt_content.content.d-flex.flex-column.flex-column-fluid.pt-0
+                .form-group
+                  label Nama Profile
+                  .input-group
+                    = f.text_field :name, class: "form-control", placeholder: "Nama Profile"
+
+                .form-group
+                  label Kode
+                  .input-group
+                    = f.text_field :codename, class: "form-control", placeholder: "Kode Profile"
+
+                .form-group
+                  label Slug
+                  .input-group
+                    = f.text_field :slug, class: "form-control", placeholder: "Slug Url Address"
+
+                .form-group
+                  label Alamat
+                  .input-group
+                    = f.text_field :address, class: "form-control", placeholder: "Alamat"
+                  
+                / .form-group
+                /   label Logo
+                /   = f.file_field :logo, class: "form-control"
+                  
+          .card-footer
+            .row
+              .mx-auto
+                a.btn.btn-light-primary.font-weight-bold.mr-2 href="#{admin_settings_company_profiles_path(slug: current_company.slug)}"  Batal
+                = f.submit "Simpan", class: "btn btn-primary"
+

@@ -9,7 +9,7 @@
             h3.card-label
               | Edit User &nbsp;
               span.text-dark-65
-                | #{@user.email}
+                | #{@user.email.split("@")&.first}
 
         .card-body.pt-0
           .tab-content.pt-0
