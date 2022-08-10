@@ -8,15 +8,15 @@ module GeneralTransactionLines
     end
 
     def create_journal
-      self.journals.create(
+      journal = self.journals.new(
         date: self.general_transaction.date, 
         number_evidence: self.general_transaction.number_evidence,
         code: self.code, 
         description: self.description, 
-        debit_idr_cents: self.debit_idr, 
-        credit_idr_cents: self.credit_idr, 
         company_id: self.company_id        
       )
+      journal.debit_idr = self.debit_idr.to_i
+      journal.credit_idr = self.credit_idr.to_i
     end
   end
 end
