@@ -9,7 +9,7 @@ module GeneralTransactions
         transaction_line = new_transaction
           .general_transaction_lines
           .new(general_transaction_line)
-
+        
         transaction_line.company_id = @company_id
       end
 

@@ -1,1 +1,110 @@
-.content style="height: 80vh;"
+#kt_content.content.d-flex.flex-column.flex-column-fluid
+  #kt_subheader.subheader.py-2.py-lg-4.subheader-solid
+    .container-fluid.d-flex.align-items-center.justify-content-between.flex-wrap.flex-sm-nowrap
+      .d-flex.align-items-center.flex-wrap.mr-2
+        h5.text-dark.font-weight-bold.mt-2.mb-2.mr-5 Dashboard
+      .d-flex.align-items-center data-controller="picker--daterange"
+        a#kt_dashboard_daterangepicker_custom.btn.btn-sm.btn-light.font-weight-bold.mr-2[
+            data-placement="left"
+            data-toggle="tooltip"
+            title=("Select dashboard daterange") 
+            data-start-date="#{params[:start_date]}"
+            data-end-date="#{params[:end_date]}"
+          ]
+          span#kt_dashboard_daterangepicker_title_custom.text-muted.font-size-base.font-weight-bold.mr-2 Today
+          span#kt_dashboard_daterangepicker_date_custom.text-primary.font-size-base.font-weight-bolder Aug 16
+
+  .d-flex.flex-column-fluid 
+    .container
+      .row 
+        .col-6
+          .row
+            .col-lg-12.col-xxl-12.col-md-12.col-sm-12
+              .card.card-custom.gutter-b.card-stretch
+                .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
+                  h3.card-title.font-weight-bolder.text-danger Cash
+                  dev[
+                    data-controller="dashboards--area-chart"
+                    data-series=[{name: "Desktops",data: [10, 41, 35, 51, 49, 62, 69, 91, 148]}].to_json
+                    data-categories=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].to_json
+                  ] 
+
+        .col-6
+          .row
+            .col-lg-12.col-xxl-12.col-md-12.col-sm-12
+              .card.card-custom.gutter-b.card-stretch
+                .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
+                  h3.card-title.font-weight-bolder.text-warning Bank Account
+                  div[
+                    data-controller="dashboards--area-chart"
+                    data-series=[{name: "Desktops",data: [150, 351, 315, 511, 493, 622, 691, 591, 648]}].to_json
+                    data-categories=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].to_json
+                  ]
+        .col-6
+          .row
+            .col-lg-12.col-xxl-12.col-md-12.col-sm-12
+              .card.card-custom.gutter-b.card-stretch
+                .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
+                  h3.card-title.font-weight-bolder.text-success Tagihan yang perlu dibayar
+                  div[
+                    data-controller="dashboards--bar-chart"
+                    data-series=[{name: "Desktops",data: [10, 41, 35, 51, 49, 62, 69, 91, 148]}].to_json
+                    data-categories=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].to_json
+                  ]
+        .col-6
+          .row
+            .col-lg-12.col-xxl-12.col-md-12.col-sm-12
+              .card.card-custom.gutter-b.card-stretch
+                .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
+                  h3.card-title.font-weight-bolder.text-success Biaya Bulan lalu
+                  div.mx-auto[
+                    data-controller="dashboards--pie-chart"
+                    data-series=[44, 55, 13, 43, 22].to_json
+                    data-categories=['Team A', 'Team B', 'Team C', 'Team D', 'Team E'].to_json
+                  ]
+
+                  table.table.mt-5
+                    tr
+                      td.text-left Komisi Fee
+                      td Rp. 10.000.000
+                    tr
+                      td.text-left Iklan Promosi
+                      td Rp. 10.000.000
+                    tr
+                      td.text-left Komunikasi - Penjualan
+                      td Rp. 10.000.000
+                    tr
+                      td.text-left Perjalanan Dinas - Penjualan
+                      td Rp. 10.000.000
+                    tr
+                      td.text-left Upah
+                      td Rp. 10.000.000
+                    tr
+                      td.text-left Lainnya
+                      td Rp. 10.000.000
+                    tr style="background-color: #f5f5f5;font-weight: bold;"
+                      td.text-left Total
+                      td Rp. 10.000.000
+                      
+        .col-6
+          .row
+            .col-lg-12.col-xxl-12.col-md-12.col-sm-12
+              .card.card-custom.gutter-b.card-stretch
+                .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
+                  h3.card-title.font-weight-bolder.text-success Total Keluar Masuk Kas
+                  div[
+                    data-controller="dashboards--bar-chart"
+                    data-series=[{name: "Net",data: [10, 41, 35, 51, 49, 62, 69, 91, 148]},{name: "In",data: [30, 42, 31, 31, 19, 62, 89, 31, 128]},{name: "Out",data: [16, 31, 25, 11, 69, 32, 89, 21, 198]}].to_json
+                    data-categories=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].to_json
+                  ]
+        .col-6
+          .row
+            .col-lg-12.col-xxl-12.col-md-12.col-sm-12
+              .card.card-custom.gutter-b.card-stretch
+                .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
+                  h3.card-title.font-weight-bolder.text-success Laba Rugi
+                  div[
+                    data-controller="dashboards--bar-chart"
+                    data-series=[{name: "Laba Kotor",data: [10, 41, 35, 51, 49, 62, 69, 91, 148]},{name: "Laba Bersih",data: [8, 23, 25, 31, 55, 32, 79, 61, 68]}].to_json
+                    data-categories=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].to_json
+                  ]
