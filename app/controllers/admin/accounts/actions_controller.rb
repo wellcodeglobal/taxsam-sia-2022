@@ -14,8 +14,8 @@ module Admin
 
       def download_template
         send_file(
-          "#{Rails.root}/public/template_import.xlsx",
-          filename: 'template_import.xlsx',
+          "#{Rails.root}/public/template_import_account.xlsx",
+          filename: 'template_import_account.xlsx',
           type: 'application/xlsx'
         )
       end

@@ -31,12 +31,12 @@ export default class extends DatatablesController {
         }
       },
       {
-        field: 'type_account',
+        field: 'balance_type',
         title: 'Tipe Akun',
         width: 80,
         textAlign: 'center',
         template: function(data) {
-          return `<span class="font-weight-bolder">${data.group}</span>`;
+          return `<span class="font-weight-bolder">${data.balance_type}</span>`;
         }
       },      
       {

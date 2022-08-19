@@ -75,7 +75,7 @@ module Api
               code: account.code,
               name: account.name,
               company_name: account.company.name,
-              group: account.group,
+              balance_type: account.balance_type,
               edit_partial_path: edit_admin_account_path(id: account.id,slug: current_company.slug),
               delete_path: admin_account_path(id: account.id, slug: current_company.slug)              
             }
