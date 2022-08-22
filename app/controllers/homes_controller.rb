@@ -10,7 +10,9 @@ class HomesController < ApplicationController
     @reports = Report.where(company: current_company)
   end
 
-  def index; end
+  def index
+    @dashboard_presenters = Dashboards::IndexPresenter.new(params[:start_date], params[:end_date])
+  end
 
   def err_page
     sample_err_methods
