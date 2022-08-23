@@ -6,13 +6,13 @@
       h3.card-label Credit
   .card-body
     div[
-      data-controller='dynamic-input'
-      data-dynamic-input-insertion-adjacent-position='afterend'
-      data-dynamic-input-requesting-index="1"
+      data-controller='base--dynamic-input'
+      data-base--dynamic-input-insertion-adjacent-position='afterend'
+      data-base--dynamic-input-requesting-index="1"
       class="form-group"
     ]    
-      .js-item-container-for-rates[
-        data-target='dynamic-input.element'
+      .js-item-container-credit[
+        data-target='base--dynamic-input.element'
       ]
         .form-group.row.pt-2
           label.col-sm-2.col-form-label
@@ -23,9 +23,9 @@
               include_blank: '== Pilih ==',
               class: 'form-control selectize',
               placeholder: 'Kode Akun',
-              data: { target: 'dynamic-input.input', controller: "select2" }
+              data: { target: 'base--dynamic-input.input', controller: "select2" }
           .col-sm-1
-            button.btn.btn-danger type='button' data-action='click->dynamic-input#remove'
+            button.btn.btn-danger type='button' data-action='click->base--dynamic-input#remove'
               i.fas.fa-trash
 
         .form-group.row
@@ -37,8 +37,8 @@
             = text_field_tag 'general_transaction_line_credit[0][credit_idr]', options[:price],
               class: 'form-control pl-10 js-nominal',
               data: {\
-                target: 'dynamic-input.input',\
-                controller: "input-price"\
+                target: 'base--dynamic-input.input',\
+                controller: "base--input-price"\
               }
               
         .form-group.row
@@ -47,9 +47,9 @@
           .col-sm-9
             = text_field_tag 'general_transaction_line_credit[0][description]', options[:description],
               class: 'form-control',
-              data: { target: 'dynamic-input.input' }
+              data: { target: 'base--dynamic-input.input' }
         hr
       .form-group.row.d-block.text-center.mt-2
-        button.btn.btn-success type='button' data-action='click->dynamic-input#add'
+        button.btn.btn-success type='button' data-action='click->base--dynamic-input#add'
           | Tambah Transaksi
         

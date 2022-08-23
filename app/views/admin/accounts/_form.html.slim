@@ -17,15 +17,47 @@
         type="text"
         value="#{@account&.name}"
       ]
+
   .form-group
-    label Group Akun
+    label Tipe Saldo
     .col-12.px-0
       = select_tag 'account[group]',
-        options_for_select(["debit", "credit"], @account&.group),
+        options_for_select(["DEBET", "KREDIT"], @account&.balance_type),
         include_blank: '== Pilih ==',
         class: 'form-control font-size-sm',
         style: 'width: 100%;',
         data: { controller: 'select2' }
+
+  .form-group
+    label Tipe Akun
+    .col-12.px-0
+      = select_tag 'account[group]',
+        options_for_select(["AKTIVA/ASET", "KEWAJIBAN", "MODAL", "PENDAPATAN ", "BIAYA/BEBAN"], @account&.account_type),
+        include_blank: '== Pilih ==',
+        class: 'form-control font-size-sm',
+        style: 'width: 100%;',
+        data: { controller: 'select2' }
+
+  .form-group
+    label Subklasifikasi
+    .col-12.px-0
+      input.form-control[
+        name="account[name]"
+        placeholder=("Subclassification")
+        type="text"
+        value="#{@account&.subclassification}"
+      ]
+
+  .form-group
+    label Subklasifikasi EN
+    .col-12.px-0
+      input.form-control[
+        name="account[name]"
+        placeholder=("Subclassification EN")
+        type="text"
+        value="#{@account&.subclassification_en}"
+      ]
+
 
 .modal-footer
   a.btn.btn-light-primary.font-weight-bold href="#{admin_accounts_path(slug: current_company.slug)}" data-dismiss="modal" type="button"  Batal

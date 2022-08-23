@@ -56,11 +56,27 @@ export default class extends Controller {
         width: 3
       },
       xaxis: {
-        categories: dataCategories,
+        categories: dataCategories
       },
       yaxis: {
         title: {
           text: ''
+        },
+        labels: {
+          style: {
+            colors: [],
+            fontSize: '10px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 400,
+            cssClass: 'apexcharts-yaxis-label',
+          },
+          formatter: function (value) {
+            if(parseInt(value)){
+              return this.formatLabel(value);
+            }else{
+              return value
+            }
+          }.bind(this)
         }
       },
       fill: {
@@ -78,5 +94,9 @@ export default class extends Controller {
 
     var chart = new ApexCharts(myElement, options);
     chart.render();
+  }
+
+  formatLabel(value){    
+    return "Rp." + window.Util.addThousandSeparator(value);
   }
 }

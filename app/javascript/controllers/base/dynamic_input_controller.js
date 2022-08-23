@@ -112,22 +112,16 @@ export default class extends Controller {
             .replace(/\[metrices\]\[\d+\]/, `[metrices][${i}]`);
         }
 
-        if (inputElement.name.includes("tax_items")){
-          inputElement.name = inputElement
-            .name
-            .replace(/tax_items\[\d+\]/, `[tax_items][${i}]`);
-        }
-
-        if (inputElement.name.includes("general_transaction_line")){
-          inputElement.name = inputElement
-            .name
-            .replace(/\general_transaction_line\[\d+\]/, `general_transaction_line[${i}]`)
-        }
-
         if (inputElement.name.includes("general_transaction_line_credit")){
           inputElement.name = inputElement
             .name
             .replace(/\general_transaction_line_credit\[\d+\]/, `general_transaction_line_credit[${i}]`)
+        }
+
+        if (inputElement.name.includes("general_transaction_line_debit")){
+          inputElement.name = inputElement
+            .name
+            .replace(/\general_transaction_line_debit\[\d+\]/, `general_transaction_line_debit[${i}]`)
         }
       });
     }
@@ -137,76 +131,16 @@ export default class extends Controller {
     );
 
     inputElements.forEach((inputElement) => {
-      if (inputElement.name.includes("metrices")){
-        inputElement.name = inputElement
-          .name
-          .replace(/\[metrices\]\[\d+\]/, `[metrices][${i}]`);
-      }
-
-      if (inputElement.name.includes("tax_items")){
-        inputElement.name = inputElement
-          .name
-          .replace(/tax_items\[\d+\]/, `[tax_items][${i}]`);
-      }
-
-      if (inputElement.name.includes("general_transaction_line")){
-        inputElement.name = inputElement
-          .name
-          .replace(/\general_transaction_line\[\d+\]/, `general_transaction_line[${i}]`)
-
-        if(inputElement.dataset.card){
-          const cardElement = document.querySelector(inputElement.dataset.card)
-          const cashAccountElement = cardElement.querySelector('select[name="general_transaction[cash_account_id]"]');
-          const cashAccountSelectedItem = cashAccountElement.options[cashAccountElement.selectedIndex].text;
-
-          if(cashAccountSelectedItem.includes('USD') || cashAccountSelectedItem.includes('507') || cashAccountSelectedItem.includes('096')){
-            if (inputElement.name ==`general_transaction_line[${i}][price]`) {
-              // inputElement.readOnly = true
-              inputElement.readOnly = false
-              inputElement.value = 0
-            }
-            if (inputElement.name ==`general_transaction_line[${i}][price_with_exchange_rate]`) {
-              inputElement.readOnly = false
-              inputElement.value = 0
-            }
-          } else {
-            if (inputElement.name ==`general_transaction_line[${i}][price]`) {
-              inputElement.readOnly = false
-              inputElement.value = 0
-            }
-            if (inputElement.name ==`general_transaction_line[${i}][price_with_exchange_rate]`) {
-              // inputElement.readOnly = true
-              inputElement.readOnly = false
-              inputElement.value = 0
-            }
-          }
-          if(cardElement.querySelector('input[name="taxes"]').checked && inputElement.name ==`general_transaction_line[${i}][tax_account_id]`){
-            inputElement.parentElement.parentElement.parentElement.classList.remove('d-none')
-            inputElement.setAttribute("required", "")
-          }
-          if(cardElement.querySelector('input[name="taxes"]').checked && inputElement.name ==`general_transaction_line[${i}][tax_description]`){
-            inputElement.setAttribute("required", "")
-          }
-
-          const selectedTaxElement = cardElement.querySelector('select[name="tax_items[0][tax_rate_id]"');
-
-          if (selectedTaxElement.value != ''){
-            const selectedOptGroupText = selectedTaxElement.options[selectedTaxElement.selectedIndex].parentElement.label;
-            if(inputElement.name == `general_transaction_line[${i}][tax_price]`){
-              if(selectedOptGroupText == 'Ppn'){
-                inputElement.parentElement.previousElementSibling.querySelector('.js-tax-label').innerHTML =  '<strong>Nominal PPN</strong>'
-              } else {
-                inputElement.parentElement.previousElementSibling.querySelector('.js-tax-label').innerHTML =  '<strong>Nominal Put-Pot</strong>'
-              }
-            }
-          }
-        }
-      }
-
       if (inputElement.name.includes("general_transaction_line_credit")){
         inputElement.name = inputElement
           .name
           .replace(/\general_transaction_line_credit\[\d+\]/, `general_transaction_line_credit[${i}]`)
+      }
+
+      if (inputElement.name.includes("general_transaction_line_debit")){
+        inputElement.name = inputElement
+          .name
+          .replace(/\general_transaction_line_debit\[\d+\]/, `general_transaction_line_debit[${i}]`)
       }
     });
   }

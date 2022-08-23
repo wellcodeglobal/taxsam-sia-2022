@@ -2,7 +2,7 @@
   #kt_subheader.subheader.py-2.py-lg-6.subheader-solid
     .container-fluid.d-flex.align-items-center.justify-content-between.flex-wrap.flex-sm-nowrap
       .d-flex.align-items-center.flex-wrap.mr-1
-        button#kt_subheader_mobile_toggle.burger-icon.burger-icon-left.mr-4.d-inline-block.d-lg-none data-controller="mobile-mode"
+        button#kt_subheader_mobile_toggle.burger-icon.burger-icon-left.mr-4.d-inline-block.d-lg-none data-controller="base--mobile-mode"
           span
         .d-flex.align-items-baseline.flex-wrap.mr-5
           h5.text-dark.font-weight-bold.my-1.mr-5 Transaksi
@@ -39,7 +39,7 @@
                   h5.font-weight-bolder.font-size-lg.m-6.d-flex.align-items-center.flex-wrap.mr-1[style="margin-left:23px !important;"]
                     | Detail Transaksi
                 .table-responsive
-                  table.table.table-head-custom.table-vertical-center.table-head-bg.table-borderless
+                  table.table.table-head-custom.table-vertical-center.table-head-bg.table-bordered
                     thead
                       tr
                         th.pl-7.text-left[style="min-width: 100px"]
@@ -61,8 +61,8 @@
                               = line.description
                           td
                             span.text-dark-75.font-weight-bolder.d-block.font-size-sm                              
-                              = line.debit_idr.format
+                              = line.debit_idr.format if line.debit_idr > 0
                           td
                             span.text-dark-75.font-weight-bolder.d-block.font-size-sm                              
-                              = line.credit_idr.format
+                              = line.credit_idr.format if line.credit_idr > 0
                           

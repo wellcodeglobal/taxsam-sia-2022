@@ -76,6 +76,9 @@ module Api
               name: account.name,
               company_name: account.company.name,
               balance_type: account.balance_type,
+              account_type: account.account_type,
+              subclassification: account.subclassification,
+              subclassification_en: account.subclassification_en,
               edit_partial_path: edit_admin_account_path(id: account.id,slug: current_company.slug),
               delete_path: admin_account_path(id: account.id, slug: current_company.slug)              
             }

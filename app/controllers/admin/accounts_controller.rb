@@ -44,7 +44,10 @@ class Admin::AccountsController < AdminController
   def account
     @account = Account.find(params[:id])
   end
+  
   def account_params
-    params.require(:account).permit(:code, :name, :group)
+    params.require(:account).permit(:code, :name, :balance_type, 
+      :account_type, :subclassification, :subclassification_en
+    )
   end
 end

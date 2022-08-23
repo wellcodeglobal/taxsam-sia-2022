@@ -26,19 +26,48 @@ export default class extends DatatablesController {
       {
         field: 'name',
         title: 'Nama Akun',
+        width: 300,
         template: function(data) {
           return `<span class="font-weight-bolder">${data.name}</span>`;
         }
       },
       {
         field: 'balance_type',
-        title: 'Tipe Akun',
+        title: 'Tipe Saldo',
         width: 80,
         textAlign: 'center',
         template: function(data) {
           return `<span class="font-weight-bolder">${data.balance_type}</span>`;
         }
-      },      
+      },
+      {
+        field: 'account_type',
+        title: 'Tipe Akun',
+        textAlign: 'center',
+        width: 200,
+        autoHide: true,
+        template: function(data) {
+          return `<span class="font-weight-bolder">${data.account_type}</span>`;
+        }
+      },
+      {
+        field: 'subclassification',
+        title: 'Subclassification',
+        textAlign: 'center',
+        autoHide: true,
+        template: function(data) {
+          return `<span class="font-weight-bolder">${data.subclassification}</span>`;
+        }
+      },
+      {
+        field: 'subclassification_en',
+        title: 'Subclassification EN',
+        textAlign: 'center',
+        autoHide: true,
+        template: function(data) {
+          return `<span class="font-weight-bolder">${data.subclassification_en}</span>`;
+        }
+      },
       {
         field: 'Actions',
         title: 'Actions',
