@@ -22,16 +22,10 @@ module Admin
       end
 
       def download_template
-        if params[:sample].present?
+        if params[:file_name].present?
           send_file(
-            "#{Rails.root}/public/sample_import_report.xlsx",
-            filename: 'sample_import_report.xlsx',
-            type: 'application/xlsx'
-          )          
-        else
-          send_file(
-            "#{Rails.root}/public/template_report.xlsx",
-            filename: 'template_report.xlsx',
+            "#{Rails.root}/public/sample/#{params[:file_name]}",
+            filename: "#{params[:file_name]}",
             type: 'application/xlsx'
           )
         end

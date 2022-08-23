@@ -34,7 +34,7 @@ module Admin
           {
             name: report_line.name,
             value: "",
-            styles: "background-color: #e1e1e1;text-align: left;",
+            styles: "font-weight: bold;text-align: left;text-transform: uppercase",
             styles_row: "",
             error_message: ""
           }
@@ -54,7 +54,7 @@ module Admin
             name: report_line.name,
             value: value,
             styles: "",
-            styles_row: "padding-left: 30px;text-align: left;",
+            styles_row: "padding-left: 30px;text-align: left;text-transform: capitalize;",
             error_message: error_message
           }
         end
@@ -72,7 +72,7 @@ module Admin
           {
             name: report_line.name,
             value: value,
-            styles: "background-color: #e1e1e1;text-align: right;",
+            styles: "font-weight: bold;background-color: #f8f8f8;text-align: right;text-transform: capitalize;",
             styles_row: "",
             error_message: error_message
           }

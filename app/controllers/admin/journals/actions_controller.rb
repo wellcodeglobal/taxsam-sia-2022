@@ -23,7 +23,7 @@ module Admin
 
       def download_template
         send_file(
-          "#{Rails.root}/public/template_journal.xlsx",
+          "#{Rails.root}/public/template/template_journal.xlsx",
           filename: 'template_journal.xlsx',
           type: 'application/xlsx'
         )

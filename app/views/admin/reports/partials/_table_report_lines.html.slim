@@ -17,5 +17,5 @@ table.table
         td style="#{ table_report[:styles_row] }"
           = table_report[:name]
         td.text-left
-          = table_report[:value].to_money.format
+          = table_report[:value].to_money.format if table_report[:value].present?
         

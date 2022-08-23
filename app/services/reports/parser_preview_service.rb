@@ -40,7 +40,7 @@ module Reports
       formula = get_formula(row)
       order = i
 
-      group = "category" if name.present? && code.present? && formula.blank?      
+      group = "category" if name.present? && formula.blank?      
       group = "component" if name.present? && code.present? && formula.present?
       group = "accumulation" if name.present? && code.blank? && formula.present?
 

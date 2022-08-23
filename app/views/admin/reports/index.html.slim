@@ -28,43 +28,10 @@
               | List Laporan
               
           .card-toolbar.justify-content-end
-            .dropdown.dropdown-inline.mr-2.mb-2
-              button.btn.btn-light-primary.font-weight-bolder.dropdown-toggle[
-                aria-expanded="false"
-                aria-haspopup="true"
-                type="button"
-                data-toggle="dropdown"
-              ]
-                i.la.la-download
-                | Import
-              .dropdown-menu.dropdown-menu-sm.dropdown-menu-right
-                ul.nav.flex-column.nav-hover
-                  li.nav-header.font-weight-bolder.text-uppercase.text-primary.pb-2.px-4
-                    | Pilih:
-                  / li.nav-item
-                    a.nav-link href="#{admin_accounts_download_template_path}" target="_blank"
-                      i.nav-icon.la.la-file-excel-o
-                      span.nav-text.ml-2 Download Template Import
-
-                  li.nav-item
-                    = link_to admin_reports_action_import_path(slug: current_company.slug),\
-                      method: :get, class: "nav-link" do
-                      i.nav-icon.la.la-upload
-                      span.nav-text.ml-2 Import Laporan
-                    / = form_with method: :post,
-                    /   url: admin_reports_action_import_path(slug: current_company.slug),
-                    /   multipart: true,
-                    /   data: {controller: 'forms--autouploader-single-file'} do
-                    /   label.nav-link.cursor-pointer
-                    /     input[
-                    /       name="file"
-                    /       style="position:absolute;top:0;left:0;opacity:0;visibility:hidden;"
-                    /       type="file"
-                    /       data-target="forms--autouploader-single-file.file"
-                    /     ]
-                    /     i.nav-icon.la.la-file-excel-o
-                    /     span.nav-text.ml-2 Import Data Akun Excel
-            
+            = link_to admin_reports_action_import_path(slug: current_company.slug),\
+              method: :get, class: "btn btn-primary" do
+              i.nav-icon.la.la-upload
+              span.nav-text.ml-2 Import Laporan
 
         .card-body
           table.table 
