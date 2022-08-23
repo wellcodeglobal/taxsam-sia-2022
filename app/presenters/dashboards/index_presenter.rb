@@ -1,8 +1,9 @@
 module Dashboards
   class IndexPresenter < BasePresenter
-    def initialize start_date, end_date
+    def initialize start_date, end_date, current_company
       @params_start_date = start_date
       @params_end_date = end_date
+      @current_company = current_company
 
       set_data_cash_balances
       set_data_bank_accounts
@@ -14,7 +15,7 @@ module Dashboards
       category_range_date.map do |date|
         dates = [dates] if dates.is_a? String
         dates = (date.first.to_date..date.last.to_date).to_a
-        journals = Journal.where(code: "1-10001", date: dates)
+        journals = Journal.where(code: "1-10001", date: dates, company_id: @current_company.id)
 
         total = journals.map(&:debit_idr).sum - journals.map(&:credit_idr).sum
         @data_cash_balances << total.to_i
@@ -35,7 +36,7 @@ module Dashboards
       category_range_date.map do |date|
         dates = [dates] if dates.is_a? String
         dates = (date.first.to_date..date.last.to_date).to_a
-        journals = Journal.where(code: "1-10002", date: dates)
+        journals = Journal.where(code: "1-10002", date: dates, company_id: @current_company.id)
 
         total = journals.map(&:debit_idr).sum - journals.map(&:credit_idr).sum
         @data_bank_accounts << total.to_i
