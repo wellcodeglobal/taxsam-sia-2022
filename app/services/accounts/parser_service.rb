@@ -13,7 +13,7 @@ module Accounts
 
     def action
       sheet.each.with_index(1) do |row, i|
-        next if i < 2 || !is_row_valid?(row)
+        next if i < 3 || !is_row_valid?(row)
         parse_and_save(row, i)
       end
     end

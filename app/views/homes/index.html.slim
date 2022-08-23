@@ -23,10 +23,14 @@
               .card.card-custom.gutter-b.card-stretch
                 .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
                   h3.card-title.font-weight-bolder.text-danger Cash
+                  .ml-4.text-left
+                    | Saldo di Kledo 
+                    b #{@dashboard_presenters.total_cash.format}
                   dev[
                     data-controller="dashboards--area-chart"
                     data-series=@dashboard_presenters.cash_balances[:series]
                     data-categories=@dashboard_presenters.cash_balances[:categories]
+                    data-color="#E91E63"
                   ] 
 
         .col-6
@@ -35,10 +39,14 @@
               .card.card-custom.gutter-b.card-stretch
                 .card-body.d-flex.flex-column.p-1.text-center.mt-5.mb-1
                   h3.card-title.font-weight-bolder.text-warning Bank Account
+                  .ml-4.text-left
+                    | Saldo di Kledo 
+                    b #{@dashboard_presenters.total_bank_account.format}
                   div[
                     data-controller="dashboards--area-chart"
                     data-series=@dashboard_presenters.bank_accounts[:series]
                     data-categories=@dashboard_presenters.bank_accounts[:categories]
+                    data-color="#ffd08d"
                   ]
         / .col-6
           .row

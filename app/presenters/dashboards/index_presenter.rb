@@ -3,6 +3,8 @@ module Dashboards
     def initialize start_date, end_date
       @params_start_date = start_date
       @params_end_date = end_date
+      @total_cash = 0.to_money
+      @total_bank_account = 0.to_money
     end
 
     def date_range
@@ -66,12 +68,15 @@ module Dashboards
     end
 
     def cash_balances
-      data_cash_balances = []
+      data_cash_balances = []      
       category_range_date.map do |date|
         dates = [dates] if dates.is_a? String
         dates = (date.first.to_date..date.last.to_date).to_a
         journals = Journal.where(code: "1-10001", date: dates)
-        data_cash_balances << journals.map(&:debit_idr).sum - journals.map(&:credit_idr).sum
+
+        total = journals.map(&:debit_idr).sum - journals.map(&:credit_idr).sum
+        data_cash_balances << total
+        @total_cash += total.to_money
       end
 
       {
@@ -81,12 +86,15 @@ module Dashboards
     end
 
     def bank_accounts
-      data_bank_accounts = []
+      data_bank_accounts = []      
       category_range_date.map do |date|
         dates = [dates] if dates.is_a? String
         dates = (date.first.to_date..date.last.to_date).to_a
         journals = Journal.where(code: "1-10002", date: dates)
-        data_bank_accounts << journals.map(&:debit_idr).sum - journals.map(&:credit_idr).sum
+
+        total = journals.map(&:debit_idr).sum - journals.map(&:credit_idr).sum
+        data_bank_accounts << total
+        @total_bank_account += total.to_money
       end
 
       {
@@ -95,5 +103,12 @@ module Dashboards
       }
     end
 
+    def total_cash
+      @total_cash
+    end
+
+    def total_bank_account
+      @total_bank_account
+    end
   end
 end
