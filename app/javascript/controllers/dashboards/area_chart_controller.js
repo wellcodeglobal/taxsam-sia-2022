@@ -83,10 +83,14 @@ export default class extends Controller {
         opacity: 1
       },
       tooltip: {
-        y: {
-          formatter: function (val) {
-            return val
-          }
+        y: {          
+          formatter: function (value) {
+            if(parseInt(value)){
+              return this.formatLabel(value);
+            }else{
+              return value
+            }
+          }.bind(this)
         }
       },
       colors:[this.color]

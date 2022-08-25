@@ -3,6 +3,9 @@
 namespace :user do
   desc 'User and Roles'
   task seed: :environment do
+    Company.destroy_all
+    User.destroy_all
+
     company = Company.find_or_initialize_by(
       name: "Taxsam",
       codename: 'TXSM',

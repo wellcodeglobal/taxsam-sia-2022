@@ -12,8 +12,8 @@ export default class extends Controller {
     var options = {
       series: dataSeries,
       chart: {
-        id: "GrafikTotalPendapatan",
-        type: 'bar',
+        id: "Grafik",
+        type: 'line',
         height: 350,
         stacked: false,
         zoom: {
@@ -60,6 +60,15 @@ export default class extends Controller {
       yaxis: {
         title: {
           text: ''
+        },
+        labels: {
+          formatter: function (value) {
+            if(parseInt(value)){
+              return this.formatLabel(value);
+            }else{
+              return value
+            }
+          }.bind(this)
         }
       },
       fill: {
@@ -67,14 +76,22 @@ export default class extends Controller {
       },
       tooltip: {
         y: {
-          formatter: function (val) {
-            return val
-          }
+          formatter: function (value) {
+            if(parseInt(value)){
+              return this.formatLabel(value);
+            }else{
+              return value
+            }
+          }.bind(this)
         }
       }
     };
 
     var chart = new ApexCharts(myElement, options);
     chart.render();
+  }
+
+  formatLabel(value){    
+    return "Rp." + window.Util.addThousandSeparator(value);
   }
 }
