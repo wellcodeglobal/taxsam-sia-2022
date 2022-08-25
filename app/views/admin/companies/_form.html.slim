@@ -1,0 +1,48 @@
+.card.card-custom
+  .card-body
+    .container
+      #kt_content.content.d-flex.flex-column.flex-column-fluid.pt-0
+        .form-group
+          label Nama Perusahaan
+          .input-group
+            = f.text_field :name, class: "form-control", placeholder: "Nama Perusahaan"
+
+        .form-group
+          label Kode Perusahaan
+          .input-group
+            = f.text_field :codename, class: "form-control", placeholder: "Kode Perusahaan"
+
+        .form-group
+          label Slug
+          .input-group
+            = f.text_field :slug, class: "form-control", placeholder: "Slug Url Address"
+
+        .form-group
+          label Alamat Perusahaan
+          .input-group
+            = f.text_field :address, class: "form-control", placeholder: "Alamat Perusahaan"
+              
+        .form-group
+          label Email Pengguna
+          .input-group
+            input.form-control[
+              name="user[email]"
+              placeholder=("Email Pengguna")
+              type="text"
+              value="#{@company.users.first.email if @company.users.present?}"
+            ]
+
+        .form-group
+          label Password Pengguna
+          .input-group
+            input.form-control[
+              name="user[password]"
+              placeholder=("Password Pengguna")
+              type="password"
+            ]
+
+  .card-footer
+    .row
+      .mx-auto
+        a.btn.btn-light-primary.font-weight-bold href="#{admin_companies_path(slug: current_company.slug)}" data-dismiss="modal" type="button"  Batal
+        = f.submit "Simpan", class: "btn btn-primary ml-2"

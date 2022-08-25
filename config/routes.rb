@@ -71,6 +71,7 @@ Rails.application.routes.draw do
           as: :import_preview
     end
 
+    resources :companies
     resources :settings, only: [:index]
     namespace :settings do
       resources :company_profiles, only: [:index, :create]
@@ -87,6 +88,9 @@ Rails.application.routes.draw do
         post 'get-all', to: 'index#show', as: :index
       end
       namespace :accounts do
+        post 'get-all', to: 'index#show', as: :index
+      end
+      namespace :companies do
         post 'get-all', to: 'index#show', as: :index
       end
     end

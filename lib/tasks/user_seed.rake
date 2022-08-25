@@ -14,7 +14,9 @@ namespace :user do
     user = User.find_or_initialize_by(email: "admin@taxsam.co")
     user.password = "password"
     user.company = company
-    user.save
+    user.save!
+    user.add_role :admin
+    user.add_role :super_admin
 
 
     company = Company.find_or_initialize_by(
@@ -29,5 +31,7 @@ namespace :user do
     user.password = "password"
     user.company = company
     user.save!
+    user.add_role :admin
+    user.add_role :super_admin
   end
 end
