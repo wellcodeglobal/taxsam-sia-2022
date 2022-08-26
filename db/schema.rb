@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_19_134137) do
+ActiveRecord::Schema.define(version: 2022_08_26_031633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -159,14 +159,12 @@ ActiveRecord::Schema.define(version: 2022_08_19_134137) do
     t.index ["company_id"], name: "index_reports_on_company_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
-    t.bigint "resource_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+    t.uuid "resource_id", default: -> { "gen_random_uuid()" }
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -183,11 +181,8 @@ ActiveRecord::Schema.define(version: 2022_08_19_134137) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
+    t.uuid "user_id", default: -> { "gen_random_uuid()" }, null: false
+    t.uuid "role_id", default: -> { "gen_random_uuid()" }, null: false
   end
 
   add_foreign_key "accounts", "companies"
