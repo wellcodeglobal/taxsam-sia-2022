@@ -3,8 +3,9 @@
 module Admin
   module Reports    
     class IndexFacade
-      def initialize params
+      def initialize params, current_company
         @params = params
+        @current_company = current_company
         @start_date = params[:start_date]&.to_date || Date.today.beginning_of_year
         @end_date = params[:end_date]&.to_date || Date.today
         @table_reports = []
@@ -101,7 +102,7 @@ module Admin
         end
 
         def get_journal_lines codes
-          Journal.where(code: codes, date: @start_date..@end_date)
+          Journal.where(company_id: @current_company.id, code: codes, date: @start_date..@end_date)
         end
 
         def formula_accumulation_parser report_line

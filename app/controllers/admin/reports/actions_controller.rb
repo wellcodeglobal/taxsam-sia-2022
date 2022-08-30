@@ -34,7 +34,7 @@ module Admin
       def export
         @report = Report.find_by(id: params[:id])
         return redirect_to admin_reports_path, alert: 'Laporan tidak ditemukan.' if @report.blank?        
-        @report_facede = Admin::Reports::IndexFacade.new(params)
+        @report_facede = Admin::Reports::IndexFacade.new(params, current_company)
         respond_to do |format|
           format.xlsx {
             response.headers['Content-Disposition'] = "attachment; filename=\"Laporan #{@report.name}.xlsx\""
@@ -45,7 +45,7 @@ module Admin
       def export_pdf
         @report = Report.find_by(id: params[:id])
         return redirect_to admin_reports_path, alert: 'Laporan tidak ditemukan.' if @report.blank?        
-        @report_facede = Admin::Reports::IndexFacade.new(params)        
+        @report_facede = Admin::Reports::IndexFacade.new(params, current_company)
         respond_to do |format|
           format.pdf {
             render pdf: "Laporan #{@report.name}",

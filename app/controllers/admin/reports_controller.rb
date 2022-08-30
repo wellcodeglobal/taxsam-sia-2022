@@ -13,7 +13,7 @@ class Admin::ReportsController < AdminController
   def show    
     @start_date = params[:start_date]&.to_date || Date.today.beginning_of_year
     @end_date = params[:end_date]&.to_date || Date.today
-    @report_facede = Admin::Reports::IndexFacade.new(params)
+    @report_facede = Admin::Reports::IndexFacade.new(params, current_company)
   end
 
   def destroy
