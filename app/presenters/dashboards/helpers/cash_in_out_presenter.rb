@@ -17,7 +17,7 @@ module Dashboards
             end_date: date.last.to_date
           }
 
-          @report_facede = Admin::Reports::IndexFacade.new(params, current_company)
+          @report_facede = Admin::Reports::IndexFacade.new(params, @current_company)
           total_cash_in = @report_facede.table_reports.map {|r| r[:value] if r[:name] == "Total Pendapatan"}.compact.sum
           total_cash_out = @report_facede.table_reports.map {|r| r[:value] if r[:name] == "Total Beban Operasional"}.compact.sum
           
