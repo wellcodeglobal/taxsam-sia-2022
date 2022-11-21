@@ -5,33 +5,43 @@
         .elementor-widget-container
           h2.elementor-heading-title.elementor-size-default
             | Login
-      .elementor-element.elementor-element-11b35043.elementor-widget.elementor-widget-heading[data-id="11b35043" data-element_type="widget" data-widget_type="heading.default"]
-        .elementor-widget-container
-          / h2.elementor-heading-title.elementor-size-default
-            | Don't have any account? 
-      .elementor-element.elementor-element-7a4c2ff7.elementor-widget.elementor-widget-heading[data-id="7a4c2ff7" data-element_type="widget" data-widget_type="heading.default"]
-        .elementor-widget-container
-          / h2.elementor-heading-title.elementor-size-default
-            | Create your account
       .elementor-element.elementor-element-35434181.elementor-button-align-end.elementor-widget.elementor-widget-form[data-id="35434181" data-element_type="widget"]
         .elementor-widget-container
-          = form_for :session, url: session_path, html: {class: 'elementor-form'} do |form|
-            .elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-name.elementor-col-100
-              = form.email_field :email,
-                class: 'elementor-field elementor-size-md elementor-field-textual',
-                placeholder: 'Email',
-                autocomplete: 'off',
-                required: 1,
-                style: 'padding: 1em;'
-            .elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-email.elementor-col-100.elementor-field-required
-              = form.password_field :password,
-                class: 'elementor-field elementor-size-md elementor-field-textual',
-                placeholder: 'Password',
-                required: 1,
-                style: "padding: 1em;"
-            .elementor-field-group.elementor-column.elementor-field-type-submit.elementor-col-100
-              button.elementor-button.elementor-size-md type="submit" Login
-      .elementor-element.elementor-element-1cc81637.elementor-widget.elementor-widget-heading[data-id="1cc81637" data-element_type="widget" data-widget_type="heading.default"]
+          .elementor-field-group.elementor-column.elementor-field-type-submit.elementor-col-100
+            = link_to 'Login Menggunakan TLC', "https://learning.taxsam.co/?locale=id&login=true", class: "elementor-button elementor-size-md"
+            
+      .elementor-element.elementor-element-11b35043.elementor-widget.elementor-widget-heading[data-id="11b35043" data-element_type="widget" data-widget_type="heading.default"]
         .elementor-widget-container
-          / h2.elementor-heading-title.elementor-size-default
-            = link_to 'Forget Password?', new_password_path(slug: current_company.slug), id: 'kt_login_forgot'
+          h3 Tidak Punya Akun ?
+          = link_to 'Register Menggunakan TLC', "https://learning.taxsam.co/?locale=id&register=true", class: "elementor-button elementor-size-md"
+
+      .elementor-element.elementor-element-11b35043.elementor-widget.elementor-widget-heading[data-id="11b35043" data-element_type="widget" data-widget_type="heading.default"]
+        .elementor-widget-container
+          h5.elementor-heading-title.elementor-size-btn-default style="padding-top: 12px;"
+            | *Setelah Login/Register Menggunakan TLC 
+            br
+            br
+            | klik Menu 
+            b style="margin: 2px;" SIA(BETA) 
+            | untuk mengunnakan Sistem SIA.
+      .elementor-element.elementor-element-35434181.elementor-button-align-end.elementor-widget.elementor-widget-form style="border-top: 2px solid #000;width: 25%;margin-left: 50px;"
+      .elementor-element.elementor-element-35434181.elementor-button-align-end.elementor-widget.elementor-widget-form[data-id="35434181" data-element_type="widget"]
+        .elementor-widget-container
+          .card style="max-width: 400px;padding: 30px;"            
+            = form_for :session, url: session_path, html: {class: 'elementor-form'} do |form|
+              .elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-name.elementor-col-100
+                = form.email_field :email,
+                  class: 'elementor-field elementor-size-md',
+                  placeholder: 'Email',
+                  autocomplete: 'off',
+                  required: 1,
+                  style: 'padding: 1em;'
+              .elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-email.elementor-col-100.elementor-field-required
+                = form.password_field :password,
+                  class: 'elementor-field elementor-size-md',
+                  placeholder: 'Password',
+                  required: 1,
+                  style: "padding: 1em;"
+              .elementor-field-group.elementor-column.elementor-field-type-submit.elementor-col-100
+                button.elementor-button.elementor-size-md type="submit" Login As Admin
+        

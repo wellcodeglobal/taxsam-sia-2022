@@ -2,6 +2,8 @@
 
 module ApplicationHelper  
   def current_company 
-    @current_company ||= current_user.company
+    if current_user.present?
+      @current_company ||= current_user.company
+    end
   end
 end

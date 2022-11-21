@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'home', to: "homes#index"
   get 'err_page', to: "homes#err_page"
 
+  get 'register_sia', to: "authentication_users#register_sia"
+  get 'login_sia', to: "authentication_users#login_sia"
+
   constraints Clearance::Constraints::SignedIn.new do
     mount Sidekiq::Web, at: '/sidekiq'    
     root to: "homes#index", as: :signed_in_root
@@ -80,6 +83,14 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    namespace :v1 do
+      namespace :accountings do
+        post "authentication", to: "authentications#get_account", as: :authentication
+        post "create_user", to: "authentications#create_user", as: :create_user
+        post "signed_in_user", to: "authentications#signed_in_user", as: :signed_in_user
+      end  
+    end
+
     namespace :admin do
       namespace :general_transactions do
         post 'get-all', to: 'index#show', as: :index

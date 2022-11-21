@@ -23,7 +23,7 @@ module Companies
     end
 
     def populate_data new_company
-      company_resource = Company.find_by(slug: "txsm")
+      company_resource = Company.find_by(slug: "txsm") || Company.order(:created_at).first
       accounts = company_resource.accounts
       reports = company_resource.reports
       
