@@ -1,38 +1,30 @@
 module Api
   module Authorizable extend ActiveSupport::Concern
     def generated_token
-      local_token = ENV['ACCOUNTING_TOKEN']
-      key = "#{local_token}:#{@email}:#{@user_id}"
-      generated_token = Base64.encode64(key)
+      email_and_id = "#{@user_id}:#{@email}"
+      generated_token = crypt.encrypt_and_sign(email_and_id, expires_in: 10.minutes)
     end
     
     def validate_token
       return redirect_to root_path unless params[:token].present?
-      generated_token = Base64.decode64(params[:token])
-      parsing_token = generated_token.split(":")
-
-      local_token = ENV['ACCOUNTING_TOKEN']
-      token = parsing_token[0]
-      return return_unauthorize unless local_token == token
-
-      @email = parsing_token[1]
-      @user_id = parsing_token[2]
-      return return_unauthorize unless @email.present? && @user_id.present?
+      
+      decrypt = crypt.decrypt_and_verify(params[:token])
+      return return_unauthorize unless decrypt.present?
+            
+      @user_id, @email = decrypt.split(":")
+      return return_unauthorize unless @user_id.present? && @email.present?
     end
 
     def verify_authorization_token
       return return_unauthorize unless request.headers[:Authorization].present?
       authorization = request.headers[:Authorization]
-      
       basic_auth = authorization.to_s.strip.split(' ').second
       return return_unauthorize unless basic_auth.present?
 
-      local_token = ENV['ACCOUNTING_TOKEN']
-      token = Base64.decode64(basic_auth)
-      return return_unauthorize unless local_token == token
-
-      @user_id = request.headers["User-ID"]
-      @email = params[:email]
+      decrypt = crypt.decrypt_and_verify(basic_auth)
+      return return_unauthorize unless decrypt.present?
+            
+      @user_id, @email = decrypt.split(":")
       return return_unauthorize unless @user_id.present? && @email.present?
     end
 
@@ -42,6 +34,14 @@ module Api
         code: 401,
         message: "token authorization failed to verify.",
       }, status: :unauthorized
+    end
+
+    def crypt
+      return @crypt if @crypt.present?
+      pass = ENV["ACCOUNTING_TOKEN"]
+      salt = ENV["ACCOUNTING_SALT"]
+      key   = ActiveSupport::KeyGenerator.new(pass).generate_key(salt, 32)
+      @crypt = ActiveSupport::MessageEncryptor.new(key)
     end
   end
 end
