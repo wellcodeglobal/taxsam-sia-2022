@@ -7,7 +7,7 @@ class AuthenticationUsersController < ApplicationController
 
   def register_sia
     @user = User.find_by_email(@email)
-    if @user.id.present?
+    if @user&.id.present?
       sign_in(@user)
       return redirect_to root_path, notice: "Akun sudah dibuat, login berhasil."
     end
