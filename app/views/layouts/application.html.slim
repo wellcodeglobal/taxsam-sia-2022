@@ -25,6 +25,13 @@ html lang="en"
     link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"
     = render "layouts/stylesheet/css"
 
+    script src="https://www.googletagmanager.com/gtag/js?id=G-X77C6762V0" data-turbolinks-track="reload" async=true
+    javascript:
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X77C6762V0');
+      
   body#kt_body.header-fixed.header-mobile-fixed.subheader-enabled.subheader-fixed.page-loading data-turbolinks='false'
     - if flash.present?
       = render 'shared/flash'
